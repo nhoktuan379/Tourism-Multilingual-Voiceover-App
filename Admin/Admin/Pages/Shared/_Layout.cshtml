@@ -1,0 +1,155 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard Sidebar</title>
+    <!-- Nhúng Icon từ Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+    <!-- Nhúng Font chữ Poppins -->
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f;
+        }
+
+        /* Sidebar Container */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 260px;
+            background-color: DarkBlue; /* Màu tối sang trọng */
+            padding: 20px 15px;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+            /* Logo / Header của Sidebar */
+            .sidebar .logo-content {
+                display: flex;
+                align-items: center;
+                padding-bottom: 30px;
+                border-bottom: 1px solid #2e2e3e;
+                margin-bottom: 20px;
+            }
+
+        .logo-content i {
+            font-size: 28px;
+            color: #4facfe; /* Màu nhấn xanh công nghệ */
+            margin-right: 12px;
+        }
+
+        .logo-content .logo-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        /* Danh sách Menu */
+        .nav-list {
+            list-style: none;
+            padding: 0; /* THÊM DÒNG NÀY để xóa khoảng cách trái mặc định của ul */
+            margin: 0;
+        }
+
+            .nav-list li {
+                margin: 10px 0;
+            }
+
+                .nav-list li a {
+                    display: flex;
+                    align-items: center;
+                    text-decoration: none;
+                    padding: 12px 15px;
+                    border-radius: 12px;
+                    color: white; /* Màu chữ xám nhẹ khi chưa hover */
+                    transition: all 0.3s ease;
+                }
+
+                    /* Hiệu ứng Hover và Active */
+                    .nav-list li a:hover,
+                    .nav-list li a.active {
+                        background: rgba(255, 255, 255, 0.2); /* Đổi nền khi chọn */
+                        color: #fff;
+                    }
+
+                    .nav-list li a i {
+                        font-size: 20px;
+                        min-width: 45px;
+                    }
+
+                    .nav-list li a .links-name {
+                        font-size: 15px;
+                        font-weight: 400;
+                    }
+
+        /* Nội dung chính bên phải */
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo-content">
+            <i class="fa-solid fa-code"></i>
+            <div class="logo-name">My Admin</div>
+        </div>
+
+        <ul class="nav-list">
+            <li>
+                <a asp-page="/Index">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span class="links-name">Quản lý POI</span>
+                </a>
+            </li>
+            <li>
+                <a asp-page="/Index1">
+                    <i class="fa-solid fa-users"></i>
+                    <span class="links-name">Quản lý Audio</span>
+                </a>
+            </li>
+            <li>
+                <a asp-page="/Index2">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span class="links-name">Quản lý bản dịch</span>
+                </a>
+            </li>
+            <li>
+                <a asp-page="/Index3">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="links-name">Lịch sử sử dụng</span>
+                </a>
+            </li>
+            <li>
+                <a asp-page="/Index4">
+                    <i class="fa-solid fa-gears"></i>
+                    <span class="links-name">Quản lý tour</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        @RenderBody() @* Nội dung từng trang sẽ "nhảy" vào đây *@
+    </div>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+
+

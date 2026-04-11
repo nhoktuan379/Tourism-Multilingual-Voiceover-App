@@ -1,0 +1,242 @@
+﻿@page
+@model Admin.Pages.Index4Model
+@{
+    ViewData["Title"] = "Thiết lập Hành trình Tour";
+    Layout = "_Layout";
+}
+
+<style>
+    .admin-container {
+        display: flex;
+        gap: 20px;
+        height: 80vh;
+    }
+
+    .tour-form-side {
+        flex: 1;
+        overflow-y: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .map-side {
+        flex: 1.5;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #ddd;
+        position: relative;
+    }
+
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .poi-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border: 1px solid #eee;
+        margin-bottom: 8px;
+        border-radius: 8px;
+        cursor: move;
+        background: #fafafa;
+    }
+
+        .poi-item:hover {
+            border-color: DarkBlue;
+        }
+
+    .order-number {
+        background: DarkBlue;
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 12px;
+        font-size: 12px;
+    }
+
+    .tour-thumbnail {
+        width: 60px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        background-color: #f0f0f0;
+    }
+
+    .existing-tours-area {
+        margin-top: 20px;
+        border-top: 2px solid #f0f0f0;
+        padding-top: 15px;
+    }
+
+    .table td {
+        vertical-align: middle;
+    }
+</style>
+<div class="header-area" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+    <h1>Quản lý Lộ trình Tour</h1>
+    <div id="tourActions">
+        <button id="btnStartTour" class="btn btn-primary" onclick="startTourCreation()" style="background:DarkBlue;">+ Tạo Tour mới</button>
+        <button id="btnFinishTour" class="btn btn-success" onclick="finishTourCreation()" style="display:none; background:Green;">✔ Hoàn thành Tour</button>
+        <button id="btnCancelTour" class="btn btn-danger" onclick="cancelTourCreation()" style="display:none; margin-left:10px;">Hủy</button>
+    </div>
+</div>
+
+<div class="admin-container">
+    <div class="tour-form-side">
+        <!-- FORM NHẬP THÔNG TIN TOUR ĐẦY ĐỦ -->
+        <div id="tourInfoForm" style="display:none; margin-bottom:20px;">
+            <div class="form-group mb-2">
+                <label><b>Tên Tour:</b></label>
+                <input type="text" id="txtTourName" class="form-control form-control-sm" placeholder="Nhập tên tour...">
+            </div>
+            <div class="form-group mb-2">
+                <label><b>Ảnh bìa (URL):</b></label>
+                <input type="text" id="txtCoverImage" class="form-control form-control-sm" placeholder="Link ảnh bìa...">
+            </div>
+            <div class="row mb-2">
+                <div class="col">
+                    <label><b>Khoảng cách (km):</b></label>
+                    <input type="number" id="txtDistance" class="form-control form-control-sm" step="0.1">
+                </div>
+                <div class="col">
+                    <label><b>Thời gian:</b></label>
+                    <input type="text" id="txtDuration" class="form-control form-control-sm" placeholder="VD: 2 tiếng">
+                </div>
+            </div>
+            <hr />
+            <h6>Lộ trình đã chọn:</h6>
+            <div id="selectedPoiList">
+                <p style="color:gray; font-size:12px;">Nhấn vào Marker trên bản đồ để thêm.</p>
+            </div>
+        </div>
+
+        <!-- DANH SÁCH TOUR ĐÃ CÓ -->
+        <div id="existingTours">
+            <h6>Danh sách Tour hiện có:</h6>
+            <table class="table table-sm table-hover" style="font-size: 13px;">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên Tour</th>
+                        <th>Khoảng cách</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ExistingTours != null)
+                    {
+                        foreach (var t in Model.ExistingTours)
+                        {
+                            <tr>
+                                <td>@t.TourID</td>
+                                <td>@t.TourName</td>
+                                <td>@(t.TotalDistance ?? 0) km</td>
+                                <td><button class="btn btn-sm btn-outline-danger" onclick="deleteTour(@t.TourID)">Xóa</button></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="map-side">
+        <iframe id="mapFrame" src="http://127.0.0.1:5500/goong_map.html"></iframe>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <script>
+        const mapIframe = document.getElementById('mapFrame');
+        let selectedTourPoints = [];
+
+        // Chỉ bật Tour Mode khi người dùng nhấn nút "Tạo Tour mới"
+        function startTourCreation() {
+            selectedTourPoints = [];
+            document.getElementById('btnStartTour').style.display = 'none';
+            document.getElementById('existingTours').style.display = 'none'; // Ẩn danh sách cũ
+
+            document.getElementById('btnFinishTour').style.display = 'inline-block';
+            document.getElementById('btnCancelTour').style.display = 'inline-block';
+            document.getElementById('tourInfoForm').style.display = 'block';
+
+            // Báo bản đồ hiện nút "Thêm vào Tour"
+            mapIframe.contentWindow.postMessage({ type: "ENABLE_TOUR_MODE", active: true }, "*");
+            renderSelectedList();
+        }
+
+        window.addEventListener("message", function (event) {
+            if (event.data.type === "ADD_TO_TOUR") {
+                const poi = event.data.poi;
+                if (!selectedTourPoints.find(p => p.id === poi.id)) {
+                    selectedTourPoints.push(poi);
+                    renderSelectedList();
+                    syncTourToMap();
+                }
+            }
+        });
+
+        function renderSelectedList() {
+            const container = document.getElementById('selectedPoiList');
+            if (selectedTourPoints.length === 0) {
+                container.innerHTML = '<p style="color:gray; font-size:12px;">Nhấn vào Marker trên bản đồ...</p>';
+                return;
+            }
+            container.innerHTML = selectedTourPoints.map((p, i) => `
+                        <div class="poi-item" style="padding:5px; margin-bottom:5px; border-left:4px solid DarkBlue;">
+                            <b class="order-number" style="width:20px; height:20px;">${i + 1}</b>
+                            <span style="font-size:12px;">${p.name}</span>
+                        </div>
+                    `).join('');
+        }
+
+        async function finishTourCreation() {
+            const data = {
+                tourName: document.getElementById('txtTourName').value,
+                coverImage: document.getElementById('txtCoverImage').value,
+                totalDistance: parseFloat(document.getElementById('txtDistance').value) || 0,
+                duration: document.getElementById('txtDuration').value,
+                poiIds: selectedTourPoints.map(p => p.id)
+            };
+
+            if (!data.tourName || data.poiIds.length < 2) {
+                alert("Vui lòng nhập tên và chọn ít nhất 2 điểm!");
+                return;
+            }
+
+            const response = await fetch('?handler=SaveTour', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                alert("Lưu tour thành công!");
+                location.reload();
+            } else {
+                alert("Lỗi: " + result.message);
+            }
+        }
+
+        function cancelTourCreation() {
+            location.reload();
+        }
+    </script>
+}
+
+
+

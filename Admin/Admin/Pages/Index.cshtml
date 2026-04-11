@@ -1,0 +1,283 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Quản lý POI";
+}
+
+@* Token bảo mật bắt buộc để dùng hàm POST *@
+@Html.AntiForgeryToken()
+
+<style>
+    .admin-map-wrapper {
+        display: flex;
+        gap: 20px;
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    #map-admin {
+        height: 550px;
+        flex: 2;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+    }
+
+    .poi-editor {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    label {
+        font-weight: 600;
+        font-size: 14px;
+        color: #333;
+    }
+
+    input {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background: #f9f9f9;
+    }
+
+        input[readonly] {
+            background: #eee;
+            cursor: not-allowed;
+        }
+
+    .btn-save {
+        background: DarkBlue;
+        color: white;
+        border: none;
+        padding: 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-weight: bold;
+        margin-top: 10px;
+        transition: 0.3s;
+    }
+
+        .btn-save:hover {
+            background: #00005b;
+            transform: translateY(-2px);
+        }
+
+    .poi-item {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+        .poi-item:hover {
+            background: #f0f0f0;
+            border-left: 4px solid DarkBlue;
+        }
+</style>
+
+<h1>Hệ thống Quản lý POI - Vĩnh Khánh</h1>
+
+<div class="admin-map-wrapper">
+    <div style="flex: 2; display: flex; flex-direction: column; gap: 10px;">
+        <iframe id="map-frame"
+                src="http://127.0.0.1:5500/goong_map.html?role=admin"
+                style="flex: 2; height: 550px; border: none; border-radius: 10px;">
+        </iframe>
+        <!-- Nút bỏ chọn nằm ngay dưới map -->
+        <button onclick="cancelSelection()" style="width: fit-content; padding: 5px 15px; font-size: 12px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; align-self: flex-start; opacity: 0.8;">
+            ✕ Bỏ chọn điểm trên bản đồ
+        </button>
+    </div>
+
+        <div class="poi-editor">
+            <h3>Phiếu Nhập POI</h3>
+
+            <div class="form-group">
+                <label>Tên địa điểm:</label>
+                <input type="text" id="poiName" placeholder="Ví dụ: Ốc Oanh..." />
+            </div>
+
+            <div class="form-group">
+                <label>Địa chỉ:</label>
+                <input type="text" id="poiAddress" placeholder="Số nhà, tên đường..." />
+            </div>
+
+            <div style="display:flex; gap:10px">
+                <div class="form-group" style="flex:1">
+                    <label>Vĩ độ (Lat):</label>
+                    <input type="text" id="poiLat" readonly placeholder="Click trên map" />
+                </div>
+                <div class="form-group" style="flex:1">
+                    <label>Kinh độ (Lng):</label>
+                    <input type="text" id="poiLng" readonly placeholder="Click trên map" />
+                </div>
+            </div>
+
+            <div style="display:flex; gap:10px">
+                <div class="form-group" style="flex:1">
+                    <label>Radius (mét):</label>
+                    <input type="number" id="poiRadius" value="20" />
+                </div>
+                <div class="form-group" style="flex:1">
+                    <label>Version:</label>
+                    <input type="text" id="poiVersion" value="1.0" />
+                </div>
+            </div>
+
+            <button class="btn-save" onclick="handleSave()">💾 LƯU ĐỊA ĐIỂM</button>
+
+            <hr />
+            <h4>Danh sách POI đã lưu (@Model.Sites.Count)</h4>
+            <div id="poiListTable" style="max-height: 200px; overflow-y: auto; border: 1px solid #eee; border-radius: 5px;">
+                @if (Model.Sites != null && Model.Sites.Any())
+            {
+                @foreach (var site in Model.Sites)
+                {
+                <div class="poi-item" onclick="focusPOI(@site.Latitude, @site.Longitude)">
+                    <strong style="color:DarkBlue;">@site.TourismName</strong><br />
+                    <small>📍 @site.Address</small>
+                </div>
+                }
+            }
+            else
+            {
+                <p style="padding:10px; color:red;">Chưa có dữ liệu trong Database.</p>
+            }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Hàm LƯU DUY NHẤT - Đã sửa để gửi đầy đủ thông tin
+        async function handleSave() {
+            const name = document.getElementById('poiName').value.trim();
+            const address = document.getElementById('poiAddress').value.trim();
+            const lat = document.getElementById('poiLat').value;
+            const lng = document.getElementById('poiLng').value;
+            const version = document.getElementById('poiVersion').value;
+
+            // Bắt buộc nhập đầy đủ
+            if (!name || !address || !lat || !lng) {
+                alert("❌ Vui lòng nhập đầy đủ Tên, Địa chỉ và chọn điểm trên Map!");
+                return;
+            }
+
+            const data = {
+                tourismName: name,
+                address: address,
+                latitude: parseFloat(lat),
+                longitude: parseFloat(lng),
+                version: version
+            };
+
+            try {
+                const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+                const response = await fetch('?handler=SavePoi', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': token
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert("✅ Đã lưu thành công!");
+                    location.reload();
+                } else {
+                    alert("⚠️ Lỗi server: " + response.statusText);
+                }
+            } catch (err) {
+                alert("💥 Lỗi kết nối: " + err.message);
+            }
+        }
+
+        // Lắng nghe tọa độ từ Iframe gửi ra
+        window.addEventListener("message", function (event) {
+            if (event.origin !== "http://127.0.0.1:5500") return;
+
+            if (event.data.type === "MAP_CLICK_EVENT") {
+                document.getElementById('poiLat').value = event.data.lat.toFixed(6);
+                document.getElementById('poiLng').value = event.data.lng.toFixed(6);
+                console.log("Đã nhận tọa độ:", event.data.lat, event.data.lng);
+            }
+            if (event.data.type === "EDIT_POI") {
+                document.getElementById('poiName').value = event.data.name;
+                document.getElementById('poiAddress').value = event.data.addr;
+                document.getElementById('poiLat').value = event.data.lat.toFixed(6);
+                document.getElementById('poiLng').value = event.data.lng.toFixed(6);
+                // Thông báo cho người dùng biết đang ở chế độ sửa
+                alert("Đã đổ thông tin '" + event.data.name + "' vào phiếu để sửa.");
+            }
+
+            // Xử lý khi nhấn nút XÓA trên Popup bản đồ
+            if (event.data.type === "DELETE_POI") {
+                deletePoi(event.data.id);
+            }
+        }, false);
+
+        // Hàm bay tới vị trí
+        function focusPOI(lat, lng) {
+            const mapIframe = document.getElementById('map-frame');
+            if (mapIframe && mapIframe.contentWindow) {
+                mapIframe.contentWindow.postMessage({
+                    type: "FLY_TO_LOCATION", lat: lat, lng: lng
+                }, "http://127.0.0.1:5500");
+            }
+        }
+
+        function cancelSelection() {
+            // 1. Reset các ô input tọa độ
+            document.getElementById('poiLat').value = "";
+            document.getElementById('poiLng').value = "";
+
+            // 2. Ra lệnh cho Iframe bản đồ xóa Marker
+            const mapIframe = document.getElementById('map-frame');
+            if (mapIframe && mapIframe.contentWindow) {
+                mapIframe.contentWindow.postMessage({
+                    type: "REMOVE_USER_MARKER"
+                }, "http://127.0.0.1:5500");
+            }
+        }
+        // Hàm gọi API xóa thực sự trong Database
+        async function deletePoi(id) {
+            const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+            try {
+                // Gửi yêu cầu DELETE tới handler DeletePoi
+                // Lưu ý: Thêm ?handler=DeletePoi và truyền id qua URL hoặc FormData
+                const response = await fetch(`?handler=DeletePoi&id=${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'RequestVerificationToken': token
+                    }
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert("✅ Đã xóa địa điểm thành công!");
+                    location.reload(); // Tải lại trang để cập nhật danh sách và bản đồ
+                } else {
+                    alert("❌ Lỗi: " + result.message);
+                }
+            } catch (error) {
+                alert("💥 Không thể kết nối tới máy chủ để xóa!");
+            }
+        }
+
+
+    </script>
+}

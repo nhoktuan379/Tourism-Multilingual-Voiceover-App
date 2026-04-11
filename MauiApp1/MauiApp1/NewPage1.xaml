@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:mapsui="clr-namespace:Mapsui.UI.Maui;assembly=Mapsui.UI.Maui"
+             x:Class="MauiApp1.NewPage1"
+             xmlns:res="clr-namespace:MauiApp1.Resources.Languages"
+             Title="NewPage1" 
+             BackgroundColor="White">
+
+    <!-- Bọc tất cả vào ScrollView để cuộn được khi danh sách dài -->
+    <ScrollView x:Name="ParentScroll">
+        <Grid RowDefinitions="Auto, Auto, Auto" Padding="30,0">
+
+            <!-- HÀNG 1: THÔNG TIN CHI TIẾT -->
+            <VerticalStackLayout Grid.Row="0" Spacing="25">
+                <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+
+                    <Label 
+                        x:Name="MySingleLabel"
+                        Grid.Column="0" 
+                        Margin="0,50,0,0" 
+                        Text="{Binding TourismName}"
+                        TextColor="Black" 
+                        FontAttributes="Bold" 
+                        FontSize="30" />
+
+                    <AbsoluteLayout>
+
+                        <!-- Nội dung chính -->
+                        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All">
+                            <!-- UI của bạn -->
+                        </ScrollView>
+
+                        <!-- Nút chọn ngôn ngữ (hạ xuống một chút) -->
+                        <Frame x:Name="LangButton"
+           WidthRequest="40"
+           HeightRequest="40"
+           CornerRadius="20"
+           Padding="0"
+           BackgroundColor="White"
+           AbsoluteLayout.LayoutBounds="0.95,0.08,40,40"
+           AbsoluteLayout.LayoutFlags="PositionProportional">
+
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnToggleLanguageMenu"/>
+                            </Frame.GestureRecognizers>
+
+                            <Image x:Name="CurrentLangImage"
+               Source="vietnam.png"
+               Aspect="AspectFill"/>
+                        </Frame>
+
+                        <!-- Dropdown KHÍT NGANG -->
+                        <Frame x:Name="LangMenu"
+           IsVisible="False"
+           BackgroundColor="White"
+           CornerRadius="10"
+           Padding="6"
+           HasShadow="True"
+           AbsoluteLayout.LayoutBounds="0.95,0.15,-1,-1"
+           AbsoluteLayout.LayoutFlags="PositionProportional">
+
+                            <VerticalStackLayout Spacing="8">
+
+                                <Image Source="vietnam.png" WidthRequest="30" HeightRequest="30">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnSelectVietnam"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                                <Image Source="unitedkingdom.png" WidthRequest="30" HeightRequest="30">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnSelectEnglish"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                                <Image Source="japan.png" WidthRequest="30" HeightRequest="30">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnSelectJapanese"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                            </VerticalStackLayout>
+                        </Frame>
+
+                    </AbsoluteLayout>
+                </Grid>
+                <!-- Nút test nhỏ gọn -->
+                
+
+
+                <Label x:Name="addrLabel"
+                       Text="{Binding Address}"
+                       FontSize="18" 
+                       TextColor="Gray" 
+                       Opacity="0.8" />
+
+               
+
+                <Label 
+        x:Name="lblQuickInfo"
+        Text="{Binding QuickInfo}"
+        FontSize="16" 
+        TextColor="#333333" 
+        LineHeight="1.2" /> 
+                
+                <Label 
+                    x:Name="lblVoiceOver"
+                    Text="{x:Static res:AppResources.VoiceOver}" 
+                    FontSize="18" 
+                    FontAttributes="Bold" 
+                    TextColor="Black" />
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+                    <Frame Grid.Column="0" CornerRadius="10" BackgroundColor="#F5F5F5" HeightRequest="50" HasShadow="False" Padding="10">
+                        <Label 
+                            Text="Nam" 
+                            HorizontalOptions="Center" 
+                            VerticalOptions="Center" 
+                            FontAttributes="Bold" 
+                            TextColor="Black"/>
+                    </Frame>
+
+                    <Frame Grid.Column="1" CornerRadius="10" BackgroundColor="#E8F0FE" HeightRequest="50" HasShadow="False" Padding="10">
+                        <Label Text="Nữ" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center" 
+                               FontAttributes="Bold" 
+                               TextColor="Black"/>
+                    </Frame>
+                </Grid>
+
+                <Label 
+                    x:Name="lblSelectTour"
+                    Text="{x:Static res:AppResources.SelectTour}" 
+                    FontSize="18" 
+                    FontAttributes="Bold" 
+                    TextColor="Black" />
+            </VerticalStackLayout>
+
+            <!-- 🔼 NÚT PHÓNG TO (nằm phía trên Map) -->
+            
+
+            <!-- HÀNG 2: MAP -->
+            <!-- HÀNG 2: MAP -->
+            <Grid Grid.Row="1" Margin="0,0">
+                <Frame x:Name="MapFrame" Grid.Row="1" Margin="0,20" HeightRequest="250" CornerRadius="20" Padding="0" HasShadow="True" IsClippedToBounds="True">
+                    <WebView x:Name="GoongMapView" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                </Frame>
+            </Grid>
+
+
+
+            <HorizontalStackLayout
+    HorizontalOptions="End"
+    VerticalOptions="Start"
+    Margin="0,360,200,0"
+    Spacing="5"
+    ZIndex="1">
+
+                <!-- TEXT -->
+                <Label x:Name="lblCreateTour"
+    Text="{x:Static res:AppResources.CreateTour}"
+VerticalOptions="Center"
+FontSize="15"
+TextColor="Black"
+FontAttributes="Bold"/>
+                <!-- ICON -->
+                <ImageButton Source="more.jpg"
+                 
+                 WidthRequest="30"
+                 HeightRequest="30"
+                 BackgroundColor="Transparent"/>
+
+            </HorizontalStackLayout>
+
+            <ImageButton Source="zoom_in.png"
+             Clicked="OnToggleMapSizeClicked"
+             HorizontalOptions="End" 
+             VerticalOptions="Start"
+             Margin="0,360,15,0"
+             WidthRequest="30"
+             HeightRequest="40"
+             CornerRadius="20"
+             Padding="10"
+             ZIndex="1"/>
+
+            <!-- 🎯 NÚT GPS (đè lên Map) -->
+            <ImageButton Source="gps.png"
+                    Clicked="OnGetLocationClicked"
+                    HorizontalOptions="End" 
+                    VerticalOptions="Start"
+                    Margin="0,360,60,0"
+                    HeightRequest="40"
+                    WidthRequest="30"
+                    CornerRadius="22"
+                    ZIndex="-1" />
+
+            <!-- HÀNG 3: DANH SÁCH TOUR -->
+            <CollectionView Grid.Row="2" x:Name="ToursListView" Margin="0,0,0,30">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="120, *" ColumnSpacing="15" HeightRequest="100" Margin="0,10">
+                            <Frame Grid.Column="0" Padding="0" CornerRadius="10" IsClippedToBounds="True" HasShadow="False">
+                                <Image Source="{Binding FullImageUrl}" Aspect="AspectFill" />
+                            </Frame>
+
+                            <Grid Grid.Column="1" RowDefinitions="Auto, Auto, *">
+                                <Label Text="{Binding TourName}" FontAttributes="Bold" FontSize="16" />
+                                <Label Text="{Binding Description}" FontSize="13" TextColor="Gray" />
+                                <Label VerticalOptions="End" FontAttributes="Bold" TextColor="#2196F3">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Thời gian: " />
+                                            <Span Text="{Binding Duration}" />
+                                            <Span Text=" phút" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

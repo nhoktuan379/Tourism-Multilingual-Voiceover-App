@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Goong Map MAUI</title>
+
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+    <!-- Mapbox GL JS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <script>
+        // 🔑 API Keys
+        mapboxgl.accessToken = 'pk.ey...';
+
+        // ✅ Cờ kiểm tra map đã load
+        window.isMapReady = false;
+
+        // 1. Khởi tạo bản đồ
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'https://tiles.goong.io/assets/goong_map_web.json?api_key=oZxcyFxqswIlR1R3TzWsjQrjBowDppRrMqUXP0mC',
+            center: [108.2435, 16.1001],
+            zoom: 15
+        });
+        
+        map.addControl(new mapboxgl.GeolocateControl());
+        map.addControl(new mapboxgl.NavigationControl());
+        
+        let userMarker = null;
+
+        // 2. Khi map load xong
+        map.on('load', function () {
+            window.isMapReady = true;
+
+            console.log("Map đã sẵn sàng");
+
+            // Marker cố định
+            new mapboxgl.Marker({ color: 'blue' })
+                .setLngLat([108.2435, 16.1001])
+                .setPopup(new mapboxgl.Popup().setHTML("<h5>Linh Ứng Đà Nẵng</h5>"))
+                .addTo(map);
+        });
+
+        // 3. Hàm MAUI gọi vào
+        function updateGoongMap(lat, lng) {
+            if (!window.isMapReady) {
+                console.log("Map chưa sẵn sàng");
+                return;
+            }
+
+            console.log("Nhận GPS:", lat, lng);
+
+            // Di chuyển camera
+            map.flyTo({
+                center: [lng, lat],
+                zoom: 16,
+                essential: true
+            });
+
+            // Cập nhật marker
+            if (!userMarker) {
+                userMarker = new mapboxgl.Marker({ color: "red" })
+                    .setLngLat([lng, lat])
+                    .addTo(map);
+            } else {
+                userMarker.setLngLat([lng, lat]);
+            }
+        }
+
+        // 4. Hàm tạo vòng tròn (giữ nguyên)
+        function createCircle(center, radiusInMeters) {
+            const points = 64;
+            const coords = [];
+            const km = radiusInMeters / 1000;
+
+            const lat = center[1];
+            const lng = center[0];
+
+            const dx = km / (111.320 * Math.cos(lat * Math.PI / 180));
+            const dy = km / 110.574;
+
+            for (let i = 0; i < points; i++) {
+                const angle = (i / points) * (2 * Math.PI);
+                coords.push([
+                    lng + dx * Math.cos(angle),
+                    lat + dy * Math.sin(angle)
+                ]);
+            }
+
+            coords.push(coords[0]);
+            return coords;
+        }
+    </script>
+</body>
+</html>

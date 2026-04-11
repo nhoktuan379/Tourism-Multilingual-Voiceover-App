@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Goong Map MAUI</title>
+
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+    <!-- Mapbox GL JS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <script>
+        // 🔑 Goong API key (public)
+        const goongApiKey = 'w4HU6ikPSq0tAZ1PhohLaIfZRMBXCuE9zrREQAaz';
+
+        // 🔑 Mapbox token (pk - public)
+        mapboxgl.accessToken = 'pk.eyJ1IjoiaG9hbmd0dWFuMzQyIiwiYSI6ImNtbXloNjU1dDB5bnYyb3BsYWE3ZGs4eXoifQ.AoBzMSQFc7UOM0eqkeu8dA';
+
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'https://tiles.goong.io/assets/goong_map_web.json?api_key=oZxcyFxqswIlR1R3TzWsjQrjBowDppRrMqUXP0mC',
+            center: [108.2435, 16.1001], // Đà Nẵng
+            zoom: 15
+        });
+
+        map.addControl(new mapboxgl.NavigationControl());
+
+        map.on('load', function () {
+
+            // 📍 Marker
+            new mapboxgl.Marker()
+                .setLngLat([108.2435, 16.1001])
+                .addTo(map);
+
+            // 🔵 Vẽ vòng tròn
+            const circleCoords = createCircle([108.2435, 16.1001], 500);
+
+            map.addSource('circle', {
+                type: 'geojson',
+                data: {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Polygon',
+                        coordinates: [circleCoords]
+                    }
+                }
+            });
+
+            map.addLayer({
+                id: 'circle-layer',
+                type: 'fill',
+                source: 'circle',
+                paint: {
+                    'fill-color': '#588888',
+                    'fill-opacity': 0.4
+                }
+            });
+        });
+
+        function createCircle(center, radiusInMeters) {
+            const points = 64;
+            const coords = [];
+            const km = radiusInMeters / 1000;
+
+            const lat = center[1];
+            const lng = center[0];
+
+            const distanceX = km / (111.320 * Math.cos(lat * Math.PI / 180));
+            const distanceY = km / 110.574;
+
+            for (let i = 0; i < points; i++) {
+                const theta = (i / points) * (2 * Math.PI);
+
+                const x = distanceX * Math.cos(theta);
+                const y = distanceY * Math.sin(theta);
+
+                coords.push([lng + x, lat + y]);
+            }
+
+            coords.push(coords[0]); // đóng polygon
+
+            return coords;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiApp1.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiApp1"
+    Shell.FlyoutBehavior="Flyout" 
+    Title="Cẩm nang Vĩnh Khánh">
+
+    <!-- Trang mặc định khi mở App -->
+    <ShellContent
+        Title="Màn hình chính"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+    <!-- Các mục hiện trong Menu bên (Flyout) -->
+    <FlyoutItem Title="Trang giới thiệu" Icon="home.png">
+        <ShellContent ContentTemplate="{DataTemplate local:NewPage1}" Route="page1" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Khám phá Vĩnh Khánh" Icon="food.png">
+        <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="vinhkhanh" />
+    </FlyoutItem>
+
+</Shell>

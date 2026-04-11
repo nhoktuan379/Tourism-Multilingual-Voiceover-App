@@ -1,0 +1,291 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|c:\\users\\duong\\downloads\\tourism multi-languages  voice-over app\\admin\\admin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|c:\\users\\duong\\downloads\\tourism multi-languages  voice-over app\\admin\\admin\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\admin\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|c:\\users\\duong\\downloads\\tourism multi-languages  voice-over app\\admin\\admin\\pages\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\pages\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|c:\\users\\duong\\downloads\\tourism multi-languages  voice-over app\\admin\\admin\\pages\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\pages\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|c:\\users\\duong\\downloads\\tourism multi-languages  voice-over app\\admin\\admin\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\admin\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\admin\\pages\\index1.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\pages\\index1.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\admin\\pages\\index4.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\pages\\index4.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\admin\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\admin\\pages\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\pages\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\admin\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\admin\\pages\\index3.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\pages\\index3.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\admin\\pages\\index2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\pages\\index2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\admin\\admin.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\admin.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\admin\\admin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{91FA864E-E4E3-4D29-8137-4208C8D6D9A6}|Admin\\Admin.csproj|solutionrelative:admin\\admin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\appsettings.json",
+              "RelativeDocumentMoniker": "Admin\\appsettings.json",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\appsettings.json",
+              "RelativeToolTip": "Admin\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-11T04:10:04.455Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "Admin\\Pages\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\_ViewImports.cshtml",
+              "RelativeToolTip": "Admin\\Pages\\_ViewImports.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-11T03:29:10.838Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "Admin\\Pages\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\_ViewStart.cshtml",
+              "RelativeToolTip": "Admin\\Pages\\_ViewStart.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-11T03:29:09.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Index3.cshtml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Index3.cshtml",
+              "RelativeDocumentMoniker": "Admin\\Pages\\Index3.cshtml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Index3.cshtml",
+              "RelativeToolTip": "Admin\\Pages\\Index3.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-27T10:54:18.254Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Index.cshtml",
+              "RelativeDocumentMoniker": "Admin\\Pages\\Index.cshtml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Index.cshtml",
+              "RelativeToolTip": "Admin\\Pages\\Index.cshtml",
+              "ViewState": "AQIAAPwAAAAAAAAAAAAcwAkBAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-26T16:16:48.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Program.cs",
+              "RelativeDocumentMoniker": "Admin\\Program.cs",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Program.cs",
+              "RelativeToolTip": "Admin\\Program.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAqwA8AAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T10:07:17.687Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "Admin\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "Admin\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-11T03:29:11.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Admin\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Admin\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAiwA4AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T09:42:13.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Index1.cshtml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Index1.cshtml",
+              "RelativeDocumentMoniker": "Admin\\Pages\\Index1.cshtml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Index1.cshtml",
+              "RelativeToolTip": "Admin\\Pages\\Index1.cshtml",
+              "ViewState": "AQIAAHcAAAAAAAAAAAAcwH4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-27T10:47:28.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Admin\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Admin\\Properties\\launchSettings.json",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAABEAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-28T09:53:42.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index4.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Index4.cshtml.cs",
+              "RelativeDocumentMoniker": "Admin\\Pages\\Index4.cshtml.cs",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Index4.cshtml.cs",
+              "RelativeToolTip": "Admin\\Pages\\Index4.cshtml.cs",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAuwEUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T21:23:16.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Index2.cshtml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Index2.cshtml",
+              "RelativeDocumentMoniker": "Admin\\Pages\\Index2.cshtml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Index2.cshtml",
+              "RelativeToolTip": "Admin\\Pages\\Index2.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-27T10:53:20.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Admin\\Pages\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Admin\\Pages\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAIUAAAAAAAAAAAAAAJcAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-27T10:34:35.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Admin",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Admin.csproj",
+              "RelativeDocumentMoniker": "Admin\\Admin.csproj",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Admin.csproj",
+              "RelativeToolTip": "Admin\\Admin.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-17T10:33:16.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Admin.csproj",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Admin.csproj",
+              "RelativeDocumentMoniker": "Admin\\Admin.csproj",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Admin.csproj",
+              "RelativeToolTip": "Admin\\Admin.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-17T10:32:39.9Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "Admin\\Pages\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\Admin\\Admin\\Pages\\Privacy.cshtml",
+              "RelativeToolTip": "Admin\\Pages\\Privacy.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-17T10:29:40.303Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

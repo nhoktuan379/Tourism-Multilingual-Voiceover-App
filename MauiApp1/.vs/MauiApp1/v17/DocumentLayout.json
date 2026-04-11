@@ -1,0 +1,465 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|c:\\users\\duong\\downloads\\tourism multi-languages  voice-over app\\mauiapp1\\mauiapp1\\newpage1.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\newpage1.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\newpage1.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\newpage1.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\models\\tourismmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\models\\tourismmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\scanpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\scanpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\class2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\class2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\resources\\languages\\appresources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\resources\\languages\\appresources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\resources\\languages\\appresources.ja.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\resources\\languages\\appresources.ja.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\resources\\languages\\appresources.en.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\resources\\languages\\appresources.en.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\resources\\languages\\appresources.ja.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\resources\\languages\\appresources.ja.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\resources\\languages\\appresources.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\resources\\languages\\appresources.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\resources\\languages\\appresources.en.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\resources\\languages\\appresources.en.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\resources\\languages\\appresources.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\resources\\languages\\appresources.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\newpage2.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\newpage2.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\mauiapp1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\mauiapp1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\platforms\\android\\androidmanifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\platforms\\android\\androidmanifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\mauiapp1.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\mauiapp1.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\scanpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\scanpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\newpage2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\newpage2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\mauiapp1\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DB98EAE2-38CC-4B1E-B908-5892A627326F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\MainPage.xaml",
+              "RelativeDocumentMoniker": "MauiApp1\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\MainPage.xaml",
+              "RelativeToolTip": "MauiApp1\\MainPage.xaml",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAAwCkAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-25T17:09:35.662Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NewPage1.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\NewPage1.xaml.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\NewPage1.xaml.cs",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\NewPage1.xaml.cs",
+              "RelativeToolTip": "MauiApp1\\NewPage1.xaml.cs",
+              "ViewState": "AQIAAGABAAAAAAAAAAAqwGYBAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T18:34:25.976Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TourismModels.cs",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Models\\TourismModels.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\Models\\TourismModels.cs",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Models\\TourismModels.cs",
+              "RelativeToolTip": "MauiApp1\\Models\\TourismModels.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAxwAIAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-05T18:03:04.665Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NewPage1.xaml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\NewPage1.xaml",
+              "RelativeDocumentMoniker": "MauiApp1\\NewPage1.xaml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\NewPage1.xaml",
+              "RelativeToolTip": "MauiApp1\\NewPage1.xaml",
+              "ViewState": "AQIAAK4AAAAAAAAAAAAkwOYAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-02-14T01:28:21.903Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApiService.cs",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Services\\ApiService.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\Services\\ApiService.cs",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Services\\ApiService.cs",
+              "RelativeToolTip": "MauiApp1\\Services\\ApiService.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAA3wCYAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-05T18:04:22.293Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\MauiProgram.cs",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\MauiProgram.cs",
+              "RelativeToolTip": "MauiApp1\\MauiProgram.cs",
+              "ViewState": "AQIAACIAAAAAAAAAAAAQwEUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T17:33:47.483Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\App.xaml",
+              "RelativeDocumentMoniker": "MauiApp1\\App.xaml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\App.xaml",
+              "RelativeToolTip": "MauiApp1\\App.xaml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-25T13:00:53.741Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AppShell.xaml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\AppShell.xaml",
+              "RelativeDocumentMoniker": "MauiApp1\\AppShell.xaml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\AppShell.xaml",
+              "RelativeToolTip": "MauiApp1\\AppShell.xaml",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAA0AAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-25T09:19:22.63Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\MainPage.xaml.cs",
+              "RelativeToolTip": "MauiApp1\\MainPage.xaml.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAGIAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T17:12:31.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ScanPage.xaml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\ScanPage.xaml",
+              "RelativeDocumentMoniker": "MauiApp1\\ScanPage.xaml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\ScanPage.xaml",
+              "RelativeToolTip": "MauiApp1\\ScanPage.xaml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-25T17:30:24.76Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Class2.cs",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Class2.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\Class2.cs",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Class2.cs",
+              "RelativeToolTip": "MauiApp1\\Class2.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAQwDcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T09:20:19.624Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Class1.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\Class1.cs",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Class1.cs",
+              "RelativeToolTip": "MauiApp1\\Class1.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAcwBcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T09:18:54.173Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AppResources.ja.resx",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Resources\\Languages\\AppResources.ja.resx",
+              "RelativeDocumentMoniker": "MauiApp1\\Resources\\Languages\\AppResources.ja.resx",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Resources\\Languages\\AppResources.ja.resx",
+              "RelativeToolTip": "MauiApp1\\Resources\\Languages\\AppResources.ja.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2026-04-11T02:16:19.699Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AppResources.resx",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Resources\\Languages\\AppResources.resx",
+              "RelativeDocumentMoniker": "MauiApp1\\Resources\\Languages\\AppResources.resx",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Resources\\Languages\\AppResources.resx",
+              "RelativeToolTip": "MauiApp1\\Resources\\Languages\\AppResources.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2026-04-11T02:10:47.616Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AppResources.en.resx",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Resources\\Languages\\AppResources.en.resx",
+              "RelativeDocumentMoniker": "MauiApp1\\Resources\\Languages\\AppResources.en.resx",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Resources\\Languages\\AppResources.en.resx",
+              "RelativeToolTip": "MauiApp1\\Resources\\Languages\\AppResources.en.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2026-04-11T02:14:38.891Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AppResources.ja.resx",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Resources\\Languages\\AppResources.ja.resx",
+              "RelativeDocumentMoniker": "MauiApp1\\Resources\\Languages\\AppResources.ja.resx",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Resources\\Languages\\AppResources.ja.resx",
+              "RelativeToolTip": "MauiApp1\\Resources\\Languages\\AppResources.ja.resx",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAIMAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2026-04-11T02:16:44.722Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AppResources.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Resources\\Languages\\AppResources.Designer.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\Resources\\Languages\\AppResources.Designer.cs",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Resources\\Languages\\AppResources.Designer.cs",
+              "RelativeToolTip": "MauiApp1\\Resources\\Languages\\AppResources.Designer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T02:22:32.84Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AppResources.en.resx",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Resources\\Languages\\AppResources.en.resx",
+              "RelativeDocumentMoniker": "MauiApp1\\Resources\\Languages\\AppResources.en.resx",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Resources\\Languages\\AppResources.en.resx",
+              "RelativeToolTip": "MauiApp1\\Resources\\Languages\\AppResources.en.resx",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAwIMAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2026-04-11T02:14:50.614Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AppResources.resx",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Resources\\Languages\\AppResources.resx",
+              "RelativeDocumentMoniker": "MauiApp1\\Resources\\Languages\\AppResources.resx",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Resources\\Languages\\AppResources.resx",
+              "RelativeToolTip": "MauiApp1\\Resources\\Languages\\AppResources.resx",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAIMAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2026-04-11T02:11:38.635Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "NewPage2.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\NewPage2.xaml.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\NewPage2.xaml.cs",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\NewPage2.xaml.cs",
+              "RelativeToolTip": "MauiApp1\\NewPage2.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T17:47:05.144Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "MauiApp1.csproj",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\MauiApp1.csproj",
+              "RelativeDocumentMoniker": "MauiApp1\\MauiApp1.csproj",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\MauiApp1.csproj",
+              "RelativeToolTip": "MauiApp1\\MauiApp1.csproj",
+              "ViewState": "AQIAAEwAAAAAAAAAAAAAAFAAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-09T19:36:45.744Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "AndroidManifest.xml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Platforms\\Android\\AndroidManifest.xml",
+              "RelativeDocumentMoniker": "MauiApp1\\Platforms\\Android\\AndroidManifest.xml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Platforms\\Android\\AndroidManifest.xml",
+              "RelativeToolTip": "MauiApp1\\Platforms\\Android\\AndroidManifest.xml",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAQAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2026-03-25T19:47:18.739Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "NewPage2.xaml",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\NewPage2.xaml",
+              "RelativeDocumentMoniker": "MauiApp1\\NewPage2.xaml",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\NewPage2.xaml",
+              "RelativeToolTip": "MauiApp1\\NewPage2.xaml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-25T17:09:13.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "AppShell.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\AppShell.xaml.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\AppShell.xaml.cs",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\AppShell.xaml.cs",
+              "RelativeToolTip": "MauiApp1\\AppShell.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T17:13:32.649Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ScanPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\ScanPage.xaml.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\ScanPage.xaml.cs",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\ScanPage.xaml.cs",
+              "RelativeToolTip": "MauiApp1\\ScanPage.xaml.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAowBAAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T17:30:46.846Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "MauiApp1",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\MauiApp1.csproj",
+              "RelativeDocumentMoniker": "MauiApp1\\MauiApp1.csproj",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\MauiApp1.csproj",
+              "RelativeToolTip": "MauiApp1\\MauiApp1.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-27T21:16:19.155Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\App.xaml.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\App.xaml.cs",
+              "RelativeToolTip": "MauiApp1\\App.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T13:00:58.359Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "MauiApp1\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\duong\\Downloads\\Tourism Multi-Languages  Voice-Over App\\MauiApp1\\MauiApp1\\Properties\\launchSettings.json",
+              "RelativeToolTip": "MauiApp1\\Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-22T21:07:03.342Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

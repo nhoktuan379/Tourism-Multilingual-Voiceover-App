@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Goong Map MAUI</title>
+
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+
+    <style>
+        body {  
+            margin: 0;
+            padding: 0;
+        } 
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <script>
+        let poiList = []; // PHẢI CÓ DÒNG NÀY Ở ĐẦU TIÊN
+    
+        const urlParams = new URLSearchParams(window.location.search);
+const isAdmin = urlParams.get('role') === 'admin';
+        const goongApiKey = 'w4HU6ikPSq0tAZ1PhohLaIfZRMBXCuE9zrREQAaz';
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoiaG9hbmd0dWFuMzQyIiwiYSI6ImNtbXloNjU1dDB5bnYyb3BsYWE3ZGs4eXoifQ.AoBzMSQFc7UOM0eqkeu8dA';
+
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'https://tiles.goong.io/assets/goong_map_web.json?api_key=oZxcyFxqswIlR1R3TzWsjQrjBowDppRrMqUXP0mC',
+            center: [106.7022, 10.7618],
+            zoom: 15
+        });
+        function resizeMap() {
+    if (map) {
+        map.resize();
+        console.log("Map resized!");
+        // Ép tải lại POI sau khi khung hình đã ổn định
+        setTimeout(() => {
+            loadPOIsFromDatabase();
+        }, 300);
+    }
+}
+    
+
+        // ✅ FIX: GeolocateControl đúng chuẩn
+        // Khai báo control
+const geolocate = new mapboxgl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true
+    },
+    showUserLocation: true
+});
+
+// Thêm vào map
+// ✅ QUAN TRỌNG: Khi người dùng bấm vào nút GPS trên bản đồ
+        map.addControl(new mapboxgl.NavigationControl());
+
+        // ✅ QUAN TRỌNG: enable geolocation API
+        map.on('load', function () {
+            // 1. Phải thêm SOURCE trước khi thêm LAYER
+            map.addSource('circle', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': []
+                }
+            });
+
+            // 2. Kiểm tra GPS
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => { console.log("GPS OK:", pos); },
+                    (err) => { console.log("GPS ERROR:", err); },
+                    { enableHighAccuracy: true }
+                );
+            }
+
+            // 3. GỌI HÀM LOAD DỮ LIỆU TỪ DB
+            loadPOIsFromDatabase();
+        });
+        
+        map.on('click', function (e) {
+            if (!isAdmin) return;
+    const lng = e.lngLat.lng;
+    const lat = e.lngLat.lat;
+
+    // 1. Vẫn giữ logic tạo Marker đỏ tại điểm click trên bản đồ
+    if (!userMarker) {
+        userMarker = new mapboxgl.Marker({ color: 'red' }).setLngLat([lng, lat]).addTo(map);
+    } else {
+        userMarker.setLngLat([lng, lat]);
+    }
+
+    // 2. QUAN TRỌNG: Gửi tọa độ ra cho trang Admin (Cha)
+    window.parent.postMessage({
+        type: "MAP_CLICK_EVENT",
+        lat: lat,
+        lng: lng
+    }, "*");
+
+    // Các phần thông báo alert hay haversine cũ bạn có thể xóa bớt cho đỡ rối
+    console.log("Đã gửi tọa độ về Admin:", lat, lng);
+});
+let tourMarkers = [];
+let isTourMode = false;
+// Lắng nghe lệnh từ trang Admin cha gửi vào
+window.addEventListener("message", function (event) {
+    if (event.data.type === "REMOVE_USER_MARKER") {
+        if (userMarker) {
+            userMarker.remove();
+            userMarker = null;
+        }
+    }
+    if (event.data.type === "FLY_TO_LOCATION") {
+        const lat = event.data.lat;
+        const lng = event.data.lng;
+        
+        // Di chuyển tâm bản đồ và đặt marker
+        map.flyTo({
+            center: [lng, lat],
+            zoom: 18,
+            essential: true
+        });
+
+        if (userMarker) {
+            userMarker.setLngLat([lng, lat]);
+        }
+    }
+    if (event.data.type === "ENABLE_TOUR_MODE") {
+        isTourMode = event.data.active;
+        // Reload lại Marker để cập nhật Popup
+        loadPOIsFromDatabase(); 
+    }
+    if (event.data.type === "DRAW_TOUR_ROUTE") {
+        // 1. Xóa các Marker tour cũ
+        tourMarkers.forEach(m => m.remove());
+        tourMarkers = [];
+
+        const points = event.data.points;
+        if (points.length === 0) return;
+
+        // 2. Vẽ các Marker mới cho Tour
+        points.forEach(p => {
+            const el = document.createElement('div');
+            el.innerHTML = `<div style="background:DarkBlue; color:white; border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; border:2px solid white; font-weight:bold; box-shadow:0 2px 5px rgba(0,0,0,0.3)">${p.order}</div>`;
+            
+            const m = new mapboxgl.Marker(el)
+                .setLngLat([p.lng, p.lat])
+                .setPopup(new mapboxgl.Popup().setHTML(`<b>Điểm ${p.order}: ${p.name}</b>`))
+                .addTo(map);
+            
+            tourMarkers.push(m);
+        });
+
+        // 3. Tự động di chuyển bản đồ để thấy toàn bộ các điểm (FitBounds)
+        const bounds = new mapboxgl.LngLatBounds();
+        points.forEach(p => bounds.extend([p.lng, p.lat]));
+        map.fitBounds(bounds, { padding: 50 });
+    }
+});
+
+
+function haversine(lat1, lng1, lat2, lng2) {
+    const R = 6371000; // bán kính Trái Đất (mét)
+
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLng = (lng2 - lng1) * Math.PI / 180;
+
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * Math.PI / 180) *
+        Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLng / 2) * Math.sin(dLng / 2);
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    return R * c; // khoảng cách (m)
+}
+
+
+        
+        let userMarker = null;
+        let isFollowing = true; // Mặc định là bám theo vị trí GPS
+        function updateLocation(lat, lng) {
+    const coords = [lng, lat];
+
+    // Cập nhật hoặc tạo mới Marker người dùng
+    if (!userMarker) {
+        userMarker = new mapboxgl.Marker({ color: 'red' }).setLngLat(coords).addTo(map);
+    } else {
+        userMarker.setLngLat(coords);
+    }
+
+    // CHỈ di chuyển tâm bản đồ nếu đang ở chế độ Following
+    // Nếu bạn đang dùng tay kéo map, isFollowing sẽ là false và lệnh này bị bỏ qua
+    if (isFollowing) {
+        map.easeTo({
+            center: coords,
+            duration: 100, // Trượt mượt mà trong 1 giây
+            easing: (t) => t 
+        });
+    }
+}
+function reCenter() {
+    isFollowing = true; 
+    
+    // Kích hoạt hành động "click" vào nút Geolocate của hệ thống
+    // Cách này giúp bản đồ tự dùng cơ chế zin của Goong/Mapbox để tìm vị trí
+    const geolocateBtn = document.querySelector('.mapboxgl-ctrl-geolocate');
+    if (geolocateBtn) {
+        geolocateBtn.click();
+    }
+}
+// Lắng nghe sự kiện kéo bản đồ để tắt chế độ Follow
+map.on('dragstart', () => {
+    isFollowing = false; 
+    console.log("Đã tắt Follow để người dùng tự do xem bản đồ.");
+});
+// Hàm để .NET MAUI gọi vào
+function updateLocationFromNative(lat, lng) {
+    const userLat = parseFloat(lat);
+    const userLng = parseFloat(lng);
+    const coords = [userLng, userLat];
+    
+    
+    // 1. Cập nhật hoặc tạo Marker đỏ
+    if (!userMarker) {
+        userMarker = new mapboxgl.Marker({ color: 'red' }).setLngLat(coords).addTo(map);
+    } else {
+        userMarker.setLngLat(coords);
+    }
+
+    if (typeof isFollowing !== 'undefined' && isFollowing === true) {
+        map.easeTo({
+            center: coords,
+            duration: 500
+        });
+    }
+
+    // 2. Di chuyển tâm bản đồ tới vị trí mới
+    
+    // --- BỔ SUNG PHẦN TRIGGER TẠI ĐÂY ---
+    poiList.forEach(poi => {
+        console.log("Toạ độ nhận được:", lat, lng);
+        const distance = haversine(lat, lng, poi.lat, poi.lng);
+         console.log("Khoảng cách tới điểm 1:", distance);
+        
+        // Kiểm tra nếu đi vào vùng bán kính
+        if (distance <= poi.radius) {
+            if (!poi.triggered) { // Chỉ trigger 1 lần khi vừa bước vào
+                poi.triggered = true; 
+                console.log("🎯 Đã vào vùng: " + poi.id);
+                alert("🎯 Bật thuyết minh cho: " + poi.id); 
+                
+                // Bạn có thể gọi thêm hàm xử lý âm thanh ở đây
+            }
+        } else {
+            // Reset trạng thái khi đi ra khỏi vùng để có thể trigger lại lần sau
+            poi.triggered = false; 
+        }
+    });
+}
+function updateLocation(lat, lng) {
+    updateLocationFromNative(lat, lng);
+}
+// Hàm tự động fetch dữ liệu từ Database thông qua API
+// Hàm tự động fetch dữ liệu từ Database thông qua API
+ 
+function loadPOIsFromDatabase() {
+    // --- PHẦN SỬA ĐỔI QUAN TRỌNG: Tự động xác định địa chỉ API ---
+    let apiHost = "10.107.159.25:5000"; // Mặc định là IP máy tính của bạn cho điện thoại thật
+
+    // Nếu đang chạy trực tiếp trên trình duyệt máy tính (Localhost)
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+        apiHost = "localhost:5000";
+    } 
+    // Nếu đang chạy trên Android Emulator (Trình giả lập)
+    else if (window.location.hostname === "10.0.2.2") {
+        apiHost = "10.0.2.2:5000";
+    }
+
+    const apiUrl = `http://${apiHost}/api/pois`;
+    console.log("Đang tải POI từ: " + apiUrl);
+
+    fetch(apiUrl)
+    .then(response => {
+        if (!response.ok) throw new Error(`Lỗi kết nối: ${response.status}`);
+        return response.json();
+    })
+    .then(sites => {
+        console.log("Đã tải " + sites.length + " địa điểm từ SQL Server");
+        
+        sites.forEach(site => {
+            // 1. Tạo Marker cơ bản (không gán Popup cố định ngay)
+            const mkr = new mapboxgl.Marker({ color: '#00008B' }) 
+                .setLngLat([site.longitude, site.latitude]) 
+                .addTo(map);
+            mkr.getElement().addEventListener('click', () => {
+    const data = {
+        SiteID: site.siteID,
+        TourismName: site.tourismName,
+        Address: site.address || "Đang cập nhật...",
+        Latitude: site.latitude,
+        Longitude: site.longitude
+    };
+
+    // Gửi dữ liệu qua URL scheme
+    window.location.href = "poi-click://" + encodeURIComponent(JSON.stringify(data));
+});
+
+            // 2. Xử lý hiển thị Popup ĐỘNG khi di chuột vào
+            mkr.getElement().addEventListener('mouseenter', () => {
+                let actionButtons = "";
+
+                if (isTourMode) {
+                    // Giao diện nút khi ở trang QUẢN LÝ TOUR
+                    actionButtons = `
+                        <button onclick="parent.postMessage({
+                            type: 'ADD_TO_TOUR', 
+                            poi: { 
+                                id: ${site.siteID}, 
+                                name: '${site.tourismName.replace(/'/g, "\\'")}', 
+                                lat: ${site.latitude}, 
+                                lng: ${site.longitude} 
+                            }
+                        }, '*')" 
+                        style="background: #28a745; color: white; border: none; padding: 6px; border-radius: 3px; cursor: pointer; font-size: 12px; width: 100%; font-weight: bold; margin-top: 5px;">
+                            ➕ Thêm vào Tour
+                        </button>`;
+                } else if (isAdmin) {
+                    // Giao diện nút Sửa/Xóa mặc định
+                    actionButtons = `
+                        <div style="display: flex; gap: 5px; margin-top: 8px;">
+                            <button onclick="parent.postMessage({
+                                type: 'EDIT_POI', id: ${site.siteID}, name: '${site.tourismName}', addr: '${site.address}', lat: ${site.latitude}, lng: ${site.longitude}
+                            }, '*')" 
+                            style="background: #007bff; color: white; border: none; padding: 4px 8px; border-radius: 3px; cursor: pointer; font-size: 11px;">✏️ Sửa</button>
+                            <button onclick="if(confirm('Xóa địa điểm này?')) parent.postMessage({type:'DELETE_POI', id:${site.siteID}}, '*')" 
+                                style="background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 3px; cursor: pointer; font-size: 11px;">🗑️ Xóa</button>
+                        </div>`;
+                }
+
+                const dynamicHTML = `
+                    <div style="font-family: Arial, sans-serif; padding: 5px; min-width: 150px;">
+                        <strong style="color: DarkBlue; font-size: 14px;">${site.tourismName}</strong>
+                        <p style="margin: 5px 0; font-size: 12px; color: #666;">${site.address || 'Không có địa chỉ'}</p>
+                        ${actionButtons}
+                    </div>`;
+
+                // Gán popup mới và mở lên
+                const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(dynamicHTML);
+                mkr.setPopup(popup);
+                mkr.togglePopup();
+            });
+
+            // 3. Nạp vào danh sách poiList cho GPS (giữ nguyên)
+            if (typeof poiList !== 'undefined' && !poiList.find(p => p.id === site.siteID)) {
+                poiList.push({
+                    id: site.siteID,
+                    name: site.tourismName,
+                    lat: site.latitude,
+                    lng: site.longitude,
+                    radius: 20,
+                    triggered: false
+                });
+            }
+        });
+    })
+    .catch(err => {
+        console.error("Lỗi lấy dữ liệu từ API:", err);
+    });
+}
+
+// Thêm biến lưu danh sách Site toàn cục
+let tourismSites = [];
+
+// Hàm này sẽ được C# gọi thông qua EvaluateJavaScriptAsync
+function updateSitesFromCSharp(jsonData) {
+    try {
+        const sites = JSON.parse(jsonData);
+        tourismSites = sites;
+
+        // Xóa marker cũ nếu có
+        // ... (logic xóa marker)
+
+        sites.forEach(site => {
+            // Vẽ Marker lên bản đồ
+            const marker = new mapboxgl.Marker()
+                .setLngLat([site.Longitude, site.Latitude]) // Lưu ý: Tên thuộc tính khớp với Model C#
+                .setPopup(new mapboxgl.Popup().setHTML(`
+                    <h4>${site.Name}</h4>
+                    <button onclick="requestQuickInfo(${site.Id})">Xem thông tin nhanh</button>
+                `))
+                .addTo(map);
+        });
+    } catch (e) {
+        console.error("Lỗi parse dữ liệu từ C#:", e);
+    }
+}
+
+// Khi người dùng bấm nút trong Popup
+function requestQuickInfo(siteId) {
+    // Gửi yêu cầu về cho MAUI (C#) xử lý
+    window.chrome.webview.postMessage(JSON.stringify({
+        action: "GET_QUICK_INFO",
+        siteId: siteId,
+        langId: 1 // Mặc định tiếng Việt
+    }));
+}
+
+// Hàm nhận thông tin nhanh từ C# trả về
+function displayQuickInfo(info) {
+    alert("Thông tin: " + info);
+}
+    </script>
+</body>
+</html> 

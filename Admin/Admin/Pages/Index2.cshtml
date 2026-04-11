@@ -1,0 +1,264 @@
+﻿@page
+@model Admin.Pages.Index2Model
+@{
+    ViewData["Title"] = "Quản lý Bản dịch Địa điểm";
+}
+@Html.AntiForgeryToken()
+
+<style>
+    .admin-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        font-family: sans-serif;
+    }
+
+    .translation-card {
+        border: 1px solid #eee;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: 0.3s;
+    }
+
+        .translation-card:hover {
+            border-color: DarkBlue;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+    .card-header-poi {
+        background: #f8f9fa;
+        padding: 12px 15px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .card-body-poi {
+        display: flex;
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .content-box {
+        flex: 1;
+    }
+
+    .original-text {
+        padding: 12px;
+        background: #eee;
+        border-radius: 5px;
+        min-height: 120px;
+    }
+
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 8px;
+    }
+
+    .btn-update {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-delete {
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .lang-switch {
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="admin-wrapper">
+
+    <h2>Quản lý Bản dịch</h2>
+
+    <!-- chọn ngôn ngữ -->
+    <select class="lang-switch" onchange="changeLang(this.value)">
+
+        <!-- 🔥 Thêm tiếng Việt -->
+        <option value="vi">Tiếng Việt</option>
+        @foreach (var lang in Model.OtherLanguages)
+        {
+        <option value="@lang.LangCode">@lang.LangName</option>
+        }
+    </select>
+
+    @foreach (var site in Model.SiteData)
+    {
+    <div class="translation-card">
+
+        <div class="card-header-poi">
+            <strong>@site.SiteName</strong>
+            <span>ID: @site.SiteID</span>
+        </div>
+
+        <div class="card-body-poi">
+
+            <!-- Nội dung gốc -->
+            <div class="content-box">
+                <label>Nội dung gốc</label>
+                <div class="original-text">
+                    @site.OriginalInfo
+                </div>
+            </div>
+
+            <!-- Bản dịch -->
+            <div class="content-box">
+
+                <!-- 🔥 THÊM TIẾNG VIỆT -->
+                <div class="lang-box"
+                     data-lang="vi"
+                     style="display:block">
+
+                    <label>Tiếng Việt</label>
+
+                    <textarea rows="5"
+                              id="ta-@site.SiteID-1">@site.OriginalInfo</textarea>
+
+                    <div class="action-buttons">
+                        <button class="btn-update"
+                                onclick="updateTranslation(@site.SiteID, 1)">
+                            💾 Cập nhật
+                        </button>
+
+                        <button class="btn-delete"
+                                onclick="deleteTranslation(@site.SiteID, 1)">
+                            🗑️ Xóa
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <!-- 🔥 CÁC NGÔN NGỮ KHÁC -->
+                @foreach (var lang in Model.OtherLanguages)
+    {
+        var trans = site.Translations.FirstOrDefault(t => t.LangID == lang.LangID);
+
+                <div class="lang-box"
+                     data-lang="@lang.LangCode"
+                     style="display:none">
+
+                    <label>@lang.LangName</label>
+
+                    <textarea rows="5"
+                              id="ta-@site.SiteID-@lang.LangID">@trans?.QuickInfo</textarea>
+
+                    <div class="action-buttons">
+                        <button class="btn-update"
+                                onclick="updateTranslation(@site.SiteID, @lang.LangID)">
+                            💾 Cập nhật
+                        </button>
+
+                        <button class="btn-delete"
+                                onclick="deleteTranslation(@site.SiteID, @lang.LangID)">
+                            🗑️ Xóa
+                        </button>
+                    </div>
+
+                </div>
+    }
+
+            </div>
+
+        </div>
+    </div>
+    }
+
+</div>
+
+@section Scripts {
+    <script>
+
+        // 🔥 đổi ngôn ngữ hiển thị
+        function changeLang(code) {
+            document.querySelectorAll('.lang-box').forEach(box => {
+                box.style.display = box.dataset.lang === code ? 'block' : 'none';
+            });
+        }
+
+
+        // 🔥 cập nhật riêng từng bản dịch
+        async function updateTranslation(siteId, langId) {
+
+            const textarea = document.getElementById(`ta-${siteId}-${langId}`);
+            const content = textarea.value;
+
+            const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+            const res = await fetch('?handler=UpdateTranslation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': token
+                },
+                body: JSON.stringify({
+                    siteId: siteId,
+                    langId: langId,
+                    content: content
+                })
+            });
+
+            const result = await res.json();
+
+            if (result.success) {
+                alert("✅ Đã cập nhật!");
+            } else {
+                alert("❌ Lỗi: " + result.message);
+            }
+        }
+
+
+        // 🔥 xóa riêng từng bản dịch
+        async function deleteTranslation(siteId, langId) {
+
+            if (!confirm("Bạn chắc chắn muốn xóa?")) return;
+
+            const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+            const res = await fetch('?handler=DeleteTranslation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': token
+                },
+                body: JSON.stringify({
+                    siteId: siteId,
+                    langId: langId
+                })
+            });
+
+            const result = await res.json();
+
+            if (result.success) {
+                document.getElementById(`ta-${siteId}-${langId}`).value = "";
+                alert("🗑️ Đã xóa!");
+            } else {
+                alert("❌ Lỗi: " + result.message);
+            }
+        }
+
+    </script>
+}

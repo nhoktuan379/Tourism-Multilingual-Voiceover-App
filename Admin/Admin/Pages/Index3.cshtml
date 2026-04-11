@@ -1,0 +1,163 @@
+﻿@page
+@model Admin.Pages.Index3Model
+@{
+    ViewData["Title"] = "Lịch sử sử dụng";
+    Layout = "_Layout";
+}
+
+<style>
+    .stat-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .stat-card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        border-left: 5px solid DarkBlue;
+    }
+
+        .stat-card h3 {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .value {
+            font-size: 24px;
+            font-weight: bold;
+            color: DarkBlue;
+        }
+
+    .history-card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .filter-bar {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .history-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .history-table th, .history-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .history-table th {
+            background: #f8f9fa;
+        }
+
+    .status-tag {
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .bg-completed {
+        background: #e8f5e9;
+        color: #2e7d32;
+    }
+
+    .bg-listening {
+        background: #e3f2fd;
+        color: #1565c0;
+    }
+</style>
+
+<div class="header">
+    <h1>Lịch sử & Thống kê</h1>
+    <p>Theo dõi hoạt động của du khách tại Phố ẩm thực Vĩnh Khánh.</p>
+</div>
+
+<!-- Thống kê nhanh -->
+<div class="stat-container">
+    <div class="stat-card">
+        <h3>Tổng lượt khách</h3>
+        <div class="value">1,250</div>
+    </div>
+    <div class="stat-card" style="border-left-color: #28a745;">
+        <h3>Audio đã phát</h3>
+        <div class="value">3,482</div>
+    </div>
+    <div class="stat-card" style="border-left-color: #ffc107;">
+        <h3>POI Hot nhất</h3>
+        <div class="value">Ốc Oanh</div>
+    </div>
+    <div class="stat-card" style="border-left-color: #17a2b8;">
+        <h3>Tour phổ biến</h3>
+        <div class="value">Ốc Đêm</div>
+    </div>
+</div>
+
+<div class="history-card">
+    <div class="filter-bar">
+        <input type="date" class="form-control" style="padding:8px; border-radius:5px; border:1px solid #ddd;">
+        <select style="padding:8px; border-radius:5px; border:1px solid #ddd; flex:1;">
+            <option>-- Lọc theo thiết bị/Người dùng --</option>
+            <option>Người dùng ẩn danh (iPhone)</option>
+            <option>Người dùng ẩn danh (Android)</option>
+        </select>
+        <button style="padding:8px 20px; background:DarkBlue; color:white; border:none; border-radius:5px; cursor:pointer;">Xuất báo cáo (Excel)</button>
+    </div>
+
+    <table class="history-table">
+        <thead>
+            <tr>
+                <th>Thời gian</th>
+                <th>Thiết bị ID</th>
+                <th>Địa điểm (POI)</th>
+                <th>Hành động</th>
+                <th>Ngôn ngữ</th>
+                <th>Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>20/10/2023 19:45</td>
+                <td><code>USR-9921</code></td>
+                <td><b>Ốc Oanh</b></td>
+                <td>Phát Audio Thuyết minh</td>
+                <td>English</td>
+                <td><span class="status-tag bg-completed">Hoàn thành</span></td>
+            </tr>
+            <tr>
+                <td>20/10/2023 19:30</td>
+                <td><code>USR-8842</code></td>
+                <td><b>Cổng chào Vĩnh Khánh</b></td>
+                <td>Kích hoạt Trigger vùng</td>
+                <td>Tiếng Việt</td>
+                <td><span class="status-tag bg-listening">Đang nghe</span></td>
+            </tr>
+            <tr>
+                <td>20/10/2023 19:15</td>
+                <td><code>USR-9921</code></td>
+                <td><b>Lẩu bò Khu nhà cháy</b></td>
+                <td>Tìm đường đến điểm</td>
+                <td>English</td>
+                <td><span class="status-tag bg-completed">Xong</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        console.log("Trang lịch sử đã sẵn sàng.");
+    </script>
+}

@@ -1,0 +1,126 @@
+﻿@page
+@model Admin.Pages.Index1Model
+@{
+    ViewData["Title"] = "Quản lý Audio Thuyết Minh";
+    Layout = "_Layout";
+}
+
+<style>
+    .audio-card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .upload-section {
+        border: 2px dashed #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        background: #fafafa;
+        margin-bottom: 20px;
+    }
+
+    .audio-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+        .audio-table th, .audio-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+    .audio-player {
+        width: 180px;
+        height: 30px;
+    }
+
+    .btn-action {
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+        color: white;
+    }
+</style>
+
+<div class="audio-header">
+    <h1>Quản lý Audio Thuyết Minh</h1>
+</div>
+
+<div class="audio-card">
+    <!-- FORM TẢI LÊN -->
+    <div class="upload-section">
+        <h3><i class="fa-solid fa-plus"></i> Thêm Audio Mới</h3>
+        <form method="post" asp-page-handler="Upload" enctype="multipart/form-data">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                <select asp-for="SelectedSiteId" required style="padding: 8px;">
+                    <option value="">-- Chọn POI --</option>
+                    @foreach (var s in Model.Sites)
+                    {
+                        <option value="@s.SiteID">@s.TourismName</option>
+                    }
+                </select>
+
+                <select asp-for="SelectedLangId" required style="padding: 8px;">
+                    <option value="">-- Chọn Ngôn ngữ --</option>
+                    @foreach (var l in Model.Languages)
+                    {
+                        <option value="@l.LangID">@l.LangName</option>
+                    }
+                </select>
+
+                <select asp-for="VoiceGender" style="padding: 8px;">
+                    <option value="Nam">Nam</option>
+                    <option value="Nữ">Nữ</option>
+                </select>
+
+                <input type="file" asp-for="UploadedFile" accept="audio/*" required />
+                <button type="submit" class="btn-action" style="background: #28a745;">Tải lên & Lưu</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- TÌM KIẾM -->
+    <div style="margin-bottom: 20px;">
+        <form method="get">
+            <input type="text" name="searchTerm" placeholder="Tìm tên POI..." style="padding: 8px; width: 300px; border-radius: 5px; border: 1px solid #ddd;" />
+            <button type="submit" class="btn-action" style="background: DarkBlue;">Tìm kiếm</button>
+        </form>
+    </div>
+
+    <!-- DANH SÁCH -->
+    <table class="audio-table">
+        <thead>
+            <tr style="background: #f8f9fa;">
+                <th>Tên POI</th>
+                <th>Ngôn ngữ</th>
+                <th>Giọng</th>
+                <th>Nghe thử</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var audio in Model.AudioList)
+            {
+                <tr>
+                    <td><b>@audio.SiteName</b></td>
+                    <td>@audio.Language</td>
+                    <td>@audio.Gender</td>
+                    <td>
+                        <audio controls class="audio-player">
+                            <source src="@audio.AudioUrl" type="audio/mpeg">
+                        </audio>
+                    </td>
+                    <td>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@audio.AudioId" onsubmit="return confirm('Xóa file này?')">
+                            <button type="submit" style="color:red; background:none; border:none; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

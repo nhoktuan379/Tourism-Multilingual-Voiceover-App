@@ -1,0 +1,130 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>MauiApp1</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<CheckEolTargetFramework>false</CheckEolTargetFramework>
+
+		<ApplicationTitle>MauiApp1</ApplicationTitle>
+		<ApplicationId>com.companyname.mauiapp1</ApplicationId>
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images: Đảm bảo tất cả ảnh trong Resources\Images được bao gồm -->
+		<MauiImage Include="Resources\Images\*" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiCss Remove="Platforms\Android\Assets\goong-js.css" />
+	</ItemGroup>
+
+	<ItemGroup>
+    	<MauiAsset Include="Resources\Raw\hochiminh.mbtiles" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Platforms\Android\Assets\goong-js.js" />
+	  <None Remove="Resources\Images\gps.png" />
+	  <None Remove="Resources\Images\japan.png" />
+	  <None Remove="Resources\Images\more.png" />
+	  <None Remove="Resources\Images\unitedkingdom.png" />
+	  <None Remove="Resources\Raw\goong_map.html" />
+	  <None Remove="Resources\Raw\hochiminh.mbtiles" />
+	  <None Remove="Resources\Raw\tphcm.mbtiles" />
+	  <None Remove="Resources\Raw\trails.mbtiles" />
+	  <None Remove="Resources\Raw\Unnamed atlas.mbtiles" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="BruTile.MbTiles" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.82" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.82" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<!-- SỬA LỖI Ở ĐÂY: Dùng biến $(MauiVersion) để khớp hoàn toàn với hệ thống -->
+		<PackageReference Include="Microsoft.Maui.Controls.Maps" Version="8.0.82" />
+		<PackageReference Include="QRCoder" Version="1.7.0" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
+		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
+		<PackageReference Include="Mapsui.Maui" Version="4.1.8" />
+    	<PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.0" />
+		
+	<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.9-preview.2.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidAsset Update="Platforms\Android\Assets\goong-js.css">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </AndroidAsset>
+	  <AndroidAsset Update="Platforms\Android\Assets\goong-js.js">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </AndroidAsset>
+	  <AndroidAsset Update="Platforms\Android\Assets\goong_map.html">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </AndroidAsset>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Resources\Languages\AppResources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>AppResources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\Languages\AppResources.en.resx">
+	    <Generator></Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Languages\AppResources.ja.resx">
+	    <Generator></Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Languages\AppResources.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\goong_map.html">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </MauiAsset>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="ScanPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+</Project>
