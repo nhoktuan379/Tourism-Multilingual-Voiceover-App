@@ -29,7 +29,7 @@
 
     <script>
         let poiList = []; // PHẢI CÓ DÒNG NÀY Ở ĐẦU TIÊN
-    
+        let poiMarkers = [];
         const urlParams = new URLSearchParams(window.location.search);
 const isAdmin = urlParams.get('role') === 'admin';
         const goongApiKey = 'w4HU6ikPSq0tAZ1PhohLaIfZRMBXCuE9zrREQAaz';
@@ -259,17 +259,24 @@ function updateLocationFromNative(lat, lng) {
         
         // Kiểm tra nếu đi vào vùng bán kính
         if (distance <= poi.radius) {
-            if (!poi.triggered) { // Chỉ trigger 1 lần khi vừa bước vào
-                poi.triggered = true; 
-                console.log("🎯 Đã vào vùng: " + poi.id);
-                alert("🎯 Bật thuyết minh cho: " + poi.id); 
-                
-                // Bạn có thể gọi thêm hàm xử lý âm thanh ở đây
-            }
-        } else {
-            // Reset trạng thái khi đi ra khỏi vùng để có thể trigger lại lần sau
-            poi.triggered = false; 
-        }
+    if (!poi.triggered) {
+        poi.triggered = true;
+
+        console.log("🎯 Auto trigger: " + poi.id);
+
+        window.location.href = "poi-click://" + encodeURIComponent(JSON.stringify({
+            SiteID: poi.id,
+            TourismName: poi.name,
+            Address: poi.address || "",
+            Latitude: poi.lat,
+            Longitude: poi.lng,
+            QuickInfo: poi.quickInfo || "",
+            Images: poi.images || [] 
+        }));
+    }
+} else {
+    poi.triggered = false;
+}
     });
 }
 function updateLocation(lat, lng) {
@@ -279,19 +286,22 @@ function updateLocation(lat, lng) {
 // Hàm tự động fetch dữ liệu từ Database thông qua API
  
 function loadPOIsFromDatabase() {
-    // --- PHẦN SỬA ĐỔI QUAN TRỌNG: Tự động xác định địa chỉ API ---
-    let apiHost = "10.107.159.25:5000"; // Mặc định là IP máy tính của bạn cho điện thoại thật
+    // 1. Tự động lấy langId từ URL (MAUI sẽ truyền qua URL ví dụ: map.html?lang=1)
+    const urlParams = new URLSearchParams(window.location.search);
+    const langId = urlParams.get('lang'); 
 
-    // Nếu đang chạy trực tiếp trên trình duyệt máy tính (Localhost)
+    let apiHost = "192.168.1.40:5000"; 
     if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
         apiHost = "localhost:5000";
-    } 
-    // Nếu đang chạy trên Android Emulator (Trình giả lập)
-    else if (window.location.hostname === "10.0.2.2") {
+    } else if (window.location.hostname === "10.0.2.2") {
         apiHost = "10.0.2.2:5000";
     }
 
-    const apiUrl = `http://${apiHost}/api/pois`;
+    // 2. Tạo URL API linh hoạt: nếu có langId thì đính kèm vào query string
+    const apiUrl = langId 
+        ? `http://${apiHost}/api/pois?langId=${langId}` 
+        : `http://${apiHost}/api/pois`;
+
     console.log("Đang tải POI từ: " + apiUrl);
 
     fetch(apiUrl)
@@ -300,25 +310,32 @@ function loadPOIsFromDatabase() {
         return response.json();
     })
     .then(sites => {
-        console.log("Đã tải " + sites.length + " địa điểm từ SQL Server");
-        
         sites.forEach(site => {
-            // 1. Tạo Marker cơ bản (không gán Popup cố định ngay)
             const mkr = new mapboxgl.Marker({ color: '#00008B' }) 
-                .setLngLat([site.longitude, site.latitude]) 
-                .addTo(map);
+    .setLngLat([site.longitude, site.latitude]) 
+    .addTo(map);
+
+// 🔥 GẮN DATA TRỰC TIẾP VÀO MARKER
+mkr.siteData = site;
+
+// 🔥 LƯU LẠI MARKER
+poiMarkers.push(mkr);
+
             mkr.getElement().addEventListener('click', () => {
+    const s = mkr.siteData; // 🔥 LẤY DATA MỚI
+
     const data = {
-        SiteID: site.siteID,
-        TourismName: site.tourismName,
-        Address: site.address || "Đang cập nhật...",
-        Latitude: site.latitude,
-        Longitude: site.longitude
+        SiteID: s.siteID,
+        TourismName: s.tourismName,
+        Address: s.address,
+        Latitude: s.latitude,
+        Longitude: s.longitude,
+        QuickInfo: s.quickInfo || "",
+        Images: s.images || []
     };
 
-    // Gửi dữ liệu qua URL scheme
-    window.location.href = "poi-click://" + encodeURIComponent(JSON.stringify(data));
-});
+                window.location.href = "poi-click://" + encodeURIComponent(JSON.stringify(data));
+            });
 
             // 2. Xử lý hiển thị Popup ĐỘNG khi di chuột vào
             mkr.getElement().addEventListener('mouseenter', () => {
@@ -368,13 +385,16 @@ function loadPOIsFromDatabase() {
             // 3. Nạp vào danh sách poiList cho GPS (giữ nguyên)
             if (typeof poiList !== 'undefined' && !poiList.find(p => p.id === site.siteID)) {
                 poiList.push({
-                    id: site.siteID,
-                    name: site.tourismName,
-                    lat: site.latitude,
-                    lng: site.longitude,
-                    radius: 20,
-                    triggered: false
-                });
+    id: site.siteID,
+    name: site.tourismName,
+    lat: site.latitude,
+    lng: site.longitude,
+    address: site.address || "",
+    quickInfo: site.quickInfo || "",
+    images: site.images || [],
+    radius: 20,
+    triggered: false
+});
             }
         });
     })
@@ -423,6 +443,67 @@ function requestQuickInfo(siteId) {
 // Hàm nhận thông tin nhanh từ C# trả về
 function displayQuickInfo(info) {
     alert("Thông tin: " + info);
+}
+
+function reloadPOIs(langId) {
+    console.log("Reload POIs với lang:", langId);
+
+    // Xóa marker cũ
+    if (typeof map !== 'undefined') {
+        poiMarkers.forEach(m => m.remove());
+        poiMarkers = [];
+    }
+
+    // reset list
+    poiList = [];
+
+    let apiHost = "192.168.1.40:5000"; 
+    if (window.location.hostname === "localhost") {
+        apiHost = "localhost:5000";
+    } else if (window.location.hostname === "10.0.2.2") {
+        apiHost = "10.0.2.2:5000";
+    }
+
+    const apiUrl = `http://${apiHost}/api/pois?langId=${langId}`;
+
+    fetch(apiUrl)
+    .then(res => res.json())
+    .then(sites => {
+        sites.forEach(site => {
+            const mkr = new mapboxgl.Marker({ color: '#00008B' })
+    .setLngLat([site.longitude, site.latitude])
+    .addTo(map);
+
+poiMarkers.push(mkr);
+
+            mkr.getElement().addEventListener('click', () => {
+                const data = {
+                    SiteID: site.siteID,
+                    TourismName: site.tourismName,
+                    Address: site.address,
+                    Latitude: site.latitude,
+                    Longitude: site.longitude,
+                    QuickInfo: site.quickInfo || "",
+                    Images: site.images || []
+                };
+
+                window.location.href = "poi-click://" + encodeURIComponent(JSON.stringify(data));
+            });
+
+            // add lại vào poiList (cho GPS)
+            poiList.push({
+    id: site.siteID,
+    name: site.tourismName,
+    lat: site.latitude,
+    lng: site.longitude,
+    address: site.address || "",
+    quickInfo: site.quickInfo || "",
+    images: site.images || [],
+    radius: 20,
+    triggered: false
+});
+        });
+    });
 }
     </script>
 </body>

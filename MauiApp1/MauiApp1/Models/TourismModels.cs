@@ -10,6 +10,7 @@
 
         // ✅ THÊM DÒNG NÀY: Để chứa thông tin dịch từ bảng SiteTranslations
         public string? QuickInfo { get; set; }
+        public List<ImageDto> Images { get; set; } = new();
     }
 
     // Các class khác giữ nguyên
@@ -32,5 +33,18 @@
 
         // ✅ THÊM DÒNG NÀY: Để chứa mô tả tour theo ngôn ngữ
         public string? TourDescription { get; set; }
+    }
+    public class SiteImageDto
+    {
+        public string url { get; set; }
+        public string type { get; set; }
+    }
+    public class ImageDto
+    {
+        [System.Text.Json.Serialization.JsonPropertyName("imageURL")]
+        public string ImageURL { get; set; }
+
+        [System.Text.Json.Serialization.JsonPropertyName("type")]
+        public string ImageType { get; set; }
     }
 }

@@ -113,23 +113,50 @@
                     FontAttributes="Bold" 
                     TextColor="Black" />
 
-                <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
-                    <Frame Grid.Column="0" CornerRadius="10" BackgroundColor="#F5F5F5" HeightRequest="50" HasShadow="False" Padding="10">
-                        <Label 
-                            Text="Nam" 
-                            HorizontalOptions="Center" 
-                            VerticalOptions="Center" 
-                            FontAttributes="Bold" 
-                            TextColor="Black"/>
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10" HeightRequest="60">
+
+                    <!-- Nút Play / Pause -->
+                    <Frame Grid.Column="0"
+           WidthRequest="50"
+           HeightRequest="50"
+           CornerRadius="25"
+           BackgroundColor="#007AFF"
+           Padding="0"
+           HasShadow="False">
+
+                        <ImageButton x:Name="btnPlayPause"
+                     Source="play.png"
+                     BackgroundColor="Transparent"
+                     Clicked="OnPlayPauseClicked"/>
                     </Frame>
 
-                    <Frame Grid.Column="1" CornerRadius="10" BackgroundColor="#E8F0FE" HeightRequest="50" HasShadow="False" Padding="10">
-                        <Label Text="Nữ" 
-                               HorizontalOptions="Center" 
-                               VerticalOptions="Center" 
-                               FontAttributes="Bold" 
-                               TextColor="Black"/>
+                    <!-- Thanh tiến trình + text -->
+                    <VerticalStackLayout Grid.Column="1" Spacing="5" VerticalOptions="Center">
+
+                        <Label x:Name="lblAudioStatus"
+               Text="Chưa phát"
+               FontSize="14"
+               TextColor="Gray"/>
+
+                        <ProgressBar x:Name="audioProgress"
+                     Progress="0"
+                     HeightRequest="4"/>
+                    </VerticalStackLayout>
+
+                    <!-- Nút Stop -->
+                    <Frame Grid.Column="2"
+           WidthRequest="50"
+           HeightRequest="50"
+           CornerRadius="25"
+           BackgroundColor="#FF3B30"
+           Padding="0"
+           HasShadow="False">
+
+                        <ImageButton Source="stop.png"
+                     BackgroundColor="Transparent"
+                     Clicked="OnStopClicked"/>
                     </Frame>
+
                 </Grid>
 
                 <Label 
@@ -139,6 +166,7 @@
                     FontAttributes="Bold" 
                     TextColor="Black" />
             </VerticalStackLayout>
+            
 
             <!-- 🔼 NÚT PHÓNG TO (nằm phía trên Map) -->
             
@@ -197,35 +225,38 @@ FontAttributes="Bold"/>
                     WidthRequest="30"
                     CornerRadius="22"
                     ZIndex="-1" />
+            
+            <VerticalStackLayout Grid.Row="2" Margin="0,10">
 
-            <!-- HÀNG 3: DANH SÁCH TOUR -->
-            <CollectionView Grid.Row="2" x:Name="ToursListView" Margin="0,0,0,30">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid ColumnDefinitions="120, *" ColumnSpacing="15" HeightRequest="100" Margin="0,10">
-                            <Frame Grid.Column="0" Padding="0" CornerRadius="10" IsClippedToBounds="True" HasShadow="False">
-                                <Image Source="{Binding FullImageUrl}" Aspect="AspectFill" />
-                            </Frame>
+                <!-- ẢNH LỚN -->
+                <Image x:Name="MainImage"
+           HeightRequest="200"
+           Aspect="AspectFill"
+           BackgroundColor="#eee"/>
 
-                            <Grid Grid.Column="1" RowDefinitions="Auto, Auto, *">
-                                <Label Text="{Binding TourName}" FontAttributes="Bold" FontSize="16" />
-                                <Label Text="{Binding Description}" FontSize="13" TextColor="Gray" />
-                                <Label VerticalOptions="End" FontAttributes="Bold" TextColor="#2196F3">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="Thời gian: " />
-                                            <Span Text="{Binding Duration}" />
-                                            <Span Text=" phút" />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                            </Grid>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                <!-- DANH SÁCH ẢNH -->
+                <CollectionView x:Name="ImageList"
+                    ItemsLayout="HorizontalList"
+                    HeightRequest="80"
+                    Margin="0,10">
 
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ImageURL}"
+                       HeightRequest="70"
+                       WidthRequest="100"
+                       Aspect="AspectFill">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnImageTapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
+            </VerticalStackLayout>
         </Grid>
+        
+        
     </ScrollView>
 </ContentPage>

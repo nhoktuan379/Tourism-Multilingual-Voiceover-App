@@ -1,32 +1,57 @@
 ﻿@page
 @model Admin.Pages.Index4Model
 @{
-    ViewData["Title"] = "Thiết lập Hành trình Tour";
+    ViewData["Title"] = "Quản lý Tour";
     Layout = "_Layout";
 }
 
 <style>
-    .admin-container {
-        display: flex;
-        gap: 20px;
-        height: 80vh;
+    body {
+        background: #f5f7fb;
     }
 
-    .tour-form-side {
-        flex: 1;
-        overflow-y: auto;
-        background: white;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    .admin-container {
+        display: grid;
+        grid-template-columns: 420px 1fr;
+        gap: 20px;
+        height: 85vh;
     }
+
+    .card {
+        background: white;
+        border-radius: 14px;
+        padding: 20px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+        .header h2 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+    .btn-main {
+        background: #0d47a1;
+        color: white;
+        border-radius: 8px;
+        padding: 8px 14px;
+        border: none;
+    }
+
+        .btn-main:hover {
+            background: #1565c0;
+        }
 
     .map-side {
-        flex: 1.5;
-        border-radius: 12px;
+        border-radius: 14px;
         overflow: hidden;
         border: 1px solid #ddd;
-        position: relative;
     }
 
     iframe {
@@ -35,172 +60,192 @@
         border: none;
     }
 
+    /* ===== TOUR CARD ===== */
+    .tour-card {
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #eee;
+        transition: 0.2s;
+    }
+
+        .tour-card:hover {
+            border-color: #0d47a1;
+            transform: translateY(-2px);
+        }
+
+    .tour-img {
+        width: 80px;
+        height: 60px;
+        border-radius: 6px;
+        object-fit: cover;
+        background: #eee;
+    }
+
+    .tour-info {
+        flex: 1;
+    }
+
+    .tour-title {
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .tour-meta {
+        font-size: 12px;
+        color: gray;
+    }
+
+    .delete-btn {
+        background: transparent;
+        border: none;
+        color: red;
+        font-size: 14px;
+    }
+
+    /* ===== POI LIST ===== */
     .poi-item {
         display: flex;
         align-items: center;
-        padding: 10px;
-        border: 1px solid #eee;
-        margin-bottom: 8px;
-        border-radius: 8px;
-        cursor: move;
+        gap: 10px;
+        padding: 8px;
+        border-left: 4px solid #0d47a1;
         background: #fafafa;
+        margin-bottom: 6px;
+        border-radius: 6px;
     }
 
-        .poi-item:hover {
-            border-color: DarkBlue;
-        }
-
     .order-number {
-        background: DarkBlue;
-        color: white;
-        width: 24px;
-        height: 24px;
+        width: 22px;
+        height: 22px;
         border-radius: 50%;
+        background: #0d47a1;
+        color: white;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 12px;
         font-size: 12px;
     }
 
-    .tour-thumbnail {
-        width: 60px;
-        height: 40px;
-        object-fit: cover;
-        border-radius: 4px;
-        border: 1px solid #ddd;
-        background-color: #f0f0f0;
-    }
-
-    .existing-tours-area {
-        margin-top: 20px;
-        border-top: 2px solid #f0f0f0;
-        padding-top: 15px;
-    }
-
-    .table td {
-        vertical-align: middle;
+    input {
+        border-radius: 6px !important;
     }
 </style>
-<div class="header-area" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-    <h1>Quản lý Lộ trình Tour</h1>
-    <div id="tourActions">
-        <button id="btnStartTour" class="btn btn-primary" onclick="startTourCreation()" style="background:DarkBlue;">+ Tạo Tour mới</button>
-        <button id="btnFinishTour" class="btn btn-success" onclick="finishTourCreation()" style="display:none; background:Green;">✔ Hoàn thành Tour</button>
-        <button id="btnCancelTour" class="btn btn-danger" onclick="cancelTourCreation()" style="display:none; margin-left:10px;">Hủy</button>
+
+<div class="header">
+    <h2>🎯 Quản lý Lộ trình Tour</h2>
+
+    <div>
+        <button id="btnStartTour" class="btn-main" onclick="startTourCreation()">+ Tạo Tour</button>
+        <button id="btnFinishTour" class="btn btn-success" onclick="finishTourCreation()" style="display:none;">✔ Lưu</button>
+        <button id="btnCancelTour" class="btn btn-danger" onclick="cancelTourCreation()" style="display:none;">✖ Hủy</button>
     </div>
 </div>
 
 <div class="admin-container">
-    <div class="tour-form-side">
-        <!-- FORM NHẬP THÔNG TIN TOUR ĐẦY ĐỦ -->
-        <div id="tourInfoForm" style="display:none; margin-bottom:20px;">
-            <div class="form-group mb-2">
-                <label><b>Tên Tour:</b></label>
-                <input type="text" id="txtTourName" class="form-control form-control-sm" placeholder="Nhập tên tour...">
-            </div>
-            <div class="form-group mb-2">
-                <label><b>Ảnh bìa (URL):</b></label>
-                <input type="text" id="txtCoverImage" class="form-control form-control-sm" placeholder="Link ảnh bìa...">
-            </div>
-            <div class="row mb-2">
+
+    <!-- LEFT PANEL -->
+    <div class="card">
+
+        <!-- FORM -->
+        <div id="tourInfoForm" style="display:none;">
+            <h5>Thông tin Tour</h5>
+
+            <input id="txtTourName" class="form-control mb-2" placeholder="Tên tour" />
+            <input id="txtCoverImage" class="form-control mb-2" placeholder="URL ảnh bìa" />
+
+            <div class="row">
                 <div class="col">
-                    <label><b>Khoảng cách (km):</b></label>
-                    <input type="number" id="txtDistance" class="form-control form-control-sm" step="0.1">
+                    <input id="txtDistance" type="number" class="form-control mb-2" placeholder="Khoảng cách (km)" />
                 </div>
                 <div class="col">
-                    <label><b>Thời gian:</b></label>
-                    <input type="text" id="txtDuration" class="form-control form-control-sm" placeholder="VD: 2 tiếng">
+                    <input id="txtDuration" class="form-control mb-2" placeholder="Thời gian" />
                 </div>
             </div>
+
             <hr />
-            <h6>Lộ trình đã chọn:</h6>
-            <div id="selectedPoiList">
-                <p style="color:gray; font-size:12px;">Nhấn vào Marker trên bản đồ để thêm.</p>
-            </div>
+
+            <h6>📍 Lộ trình:</h6>
+            <div id="selectedPoiList"></div>
         </div>
 
-        <!-- DANH SÁCH TOUR ĐÃ CÓ -->
+        <!-- EXISTING TOURS -->
         <div id="existingTours">
-            <h6>Danh sách Tour hiện có:</h6>
-            <table class="table table-sm table-hover" style="font-size: 13px;">
-                <thead class="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Tên Tour</th>
-                        <th>Khoảng cách</th>
-                        <th>Hành động</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.ExistingTours != null)
-                    {
-                        foreach (var t in Model.ExistingTours)
-                        {
-                            <tr>
-                                <td>@t.TourID</td>
-                                <td>@t.TourName</td>
-                                <td>@(t.TotalDistance ?? 0) km</td>
-                                <td><button class="btn btn-sm btn-outline-danger" onclick="deleteTour(@t.TourID)">Xóa</button></td>
-                            </tr>
-                        }
-                    }
-                </tbody>
-            </table>
+            <h5>Danh sách Tour</h5>
+
+            @foreach (var t in Model.ExistingTours)
+            {
+                <div class="tour-card">
+                    <img src="@(t.CoverImage ?? "/images/no-image.png")" class="tour-img" />
+
+                    <div class="tour-info">
+                        <div class="tour-title">@t.TourName</div>
+                        <div class="tour-meta">
+                            @(t.TotalDistance ?? 0) km • @t.Duration
+                        </div>
+                    </div>
+
+                    <button class="delete-btn" onclick="deleteTour(@t.TourID)">🗑</button>
+                </div>
+            }
         </div>
+
     </div>
 
+    <!-- MAP -->
     <div class="map-side">
         <iframe id="mapFrame" src="http://127.0.0.1:5500/goong_map.html"></iframe>
     </div>
+
 </div>
-
-
-
 
 @section Scripts {
     <script>
         const mapIframe = document.getElementById('mapFrame');
         let selectedTourPoints = [];
 
-        // Chỉ bật Tour Mode khi người dùng nhấn nút "Tạo Tour mới"
         function startTourCreation() {
             selectedTourPoints = [];
+
             document.getElementById('btnStartTour').style.display = 'none';
-            document.getElementById('existingTours').style.display = 'none'; // Ẩn danh sách cũ
+            document.getElementById('existingTours').style.display = 'none';
 
             document.getElementById('btnFinishTour').style.display = 'inline-block';
             document.getElementById('btnCancelTour').style.display = 'inline-block';
             document.getElementById('tourInfoForm').style.display = 'block';
 
-            // Báo bản đồ hiện nút "Thêm vào Tour"
             mapIframe.contentWindow.postMessage({ type: "ENABLE_TOUR_MODE", active: true }, "*");
+
             renderSelectedList();
         }
 
         window.addEventListener("message", function (event) {
             if (event.data.type === "ADD_TO_TOUR") {
                 const poi = event.data.poi;
+
                 if (!selectedTourPoints.find(p => p.id === poi.id)) {
                     selectedTourPoints.push(poi);
                     renderSelectedList();
-                    syncTourToMap();
                 }
             }
         });
 
         function renderSelectedList() {
             const container = document.getElementById('selectedPoiList');
+
             if (selectedTourPoints.length === 0) {
-                container.innerHTML = '<p style="color:gray; font-size:12px;">Nhấn vào Marker trên bản đồ...</p>';
+                container.innerHTML = '<p style="color:gray;">Chọn điểm trên bản đồ...</p>';
                 return;
             }
+
             container.innerHTML = selectedTourPoints.map((p, i) => `
-                        <div class="poi-item" style="padding:5px; margin-bottom:5px; border-left:4px solid DarkBlue;">
-                            <b class="order-number" style="width:20px; height:20px;">${i + 1}</b>
-                            <span style="font-size:12px;">${p.name}</span>
-                        </div>
-                    `).join('');
+                    <div class="poi-item">
+                        <div class="order-number">${i + 1}</div>
+                        <span>${p.name}</span>
+                    </div>
+                `).join('');
         }
 
         async function finishTourCreation() {
@@ -213,22 +258,23 @@
             };
 
             if (!data.tourName || data.poiIds.length < 2) {
-                alert("Vui lòng nhập tên và chọn ít nhất 2 điểm!");
+                alert("Nhập tên và chọn ít nhất 2 điểm!");
                 return;
             }
 
-            const response = await fetch('?handler=SaveTour', {
+            const res = await fetch('?handler=SaveTour', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
 
-            const result = await response.json();
+            const result = await res.json();
+
             if (result.success) {
-                alert("Lưu tour thành công!");
+                alert("✔ Lưu thành công");
                 location.reload();
             } else {
-                alert("Lỗi: " + result.message);
+                alert("❌ " + result.message);
             }
         }
 
@@ -237,6 +283,3 @@
         }
     </script>
 }
-
-
-

@@ -66,6 +66,27 @@ namespace Admin.Pages
                 return new JsonResult(new { success = false, message = ex.Message });
             }
         }
+
+        public async Task<IActionResult> OnGetTourDetails(int tourId)
+        {
+            var data = await _context.TourDetails
+                .Where(td => td.TourID == tourId)
+                .OrderBy(td => td.OrderIndex) // 🔥 QUAN TRỌNG
+                .Join(_context.TourismSites,
+                    td => td.SiteID,
+                    s => s.SiteID,
+                    (td, s) => new
+                    {
+                        id = s.SiteID,
+                        name = s.TourismName,
+                        lat = s.Latitude,
+                        lng = s.Longitude,
+                        order = td.OrderIndex
+                    })
+                .ToListAsync();
+
+            return new JsonResult(data);
+        }
     }
 
 }

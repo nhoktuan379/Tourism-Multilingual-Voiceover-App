@@ -58,6 +58,7 @@
 	  <None Remove="Resources\Images\japan.png" />
 	  <None Remove="Resources\Images\more.png" />
 	  <None Remove="Resources\Images\unitedkingdom.png" />
+	  <None Remove="Resources\Images\vinhkhanh.jpg" />
 	  <None Remove="Resources\Raw\goong_map.html" />
 	  <None Remove="Resources\Raw\hochiminh.mbtiles" />
 	  <None Remove="Resources\Raw\tphcm.mbtiles" />

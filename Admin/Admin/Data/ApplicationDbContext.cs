@@ -17,6 +17,8 @@ namespace Admin.Data
         public DbSet<TourDetail> TourDetails { get; set; }
         public DbSet<TourTranslation> TourTranslations { get; set; }
 
+        public DbSet<SiteImage> SiteImages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // 1. Cấu hình khóa chính hỗn hợp
@@ -114,6 +116,19 @@ namespace Admin.Data
         public int TourID { get; set; }
         public int LangID { get; set; }
         public string? TourDescription { get; set; }
+    }
+
+    [Table("SiteImages")]
+    public class SiteImage
+    {
+        [Key]
+        public int ImageID { get; set; }
+
+        public int SiteID { get; set; }
+
+        public string ImageURL { get; set; } = null!;
+
+        public string ImageType { get; set; } = "Detail"; // Cover / Detail
     }
 
 }

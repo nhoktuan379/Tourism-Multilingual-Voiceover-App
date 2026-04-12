@@ -17,6 +17,7 @@ using SQLite;
 using System.IO;
 using System.Globalization;
 using MauiApp1.Resources.Languages;
+using System.Net.Http;
 
 
 
@@ -28,14 +29,14 @@ public partial class NewPage1 : ContentPage
     private bool _isTrackingStarted = false;
 
     private readonly MauiApp1.Services.SqlService _sqlService = new MauiApp1.Services.SqlService();
-
+    int currentLangId = 1;
     public NewPage1()
     {
         InitializeComponent();
 
 #if ANDROID
         // ✅ DÙNG IP THẬT (máy bạn)
-        GoongMapView.Source = "http://10.107.159.25:5500/goong_map.html";
+        GoongMapView.Source = $"http://192.168.1.40:5500/goong_map.html?lang={currentLangId}";
 #else
         GoongMapView.Source = "http://localhost:5500/goong_map.html";
 #endif
@@ -203,7 +204,7 @@ public partial class NewPage1 : ContentPage
                 {
                     var request = new GeolocationRequest(
                         GeolocationAccuracy.High,
-                        TimeSpan.FromSeconds(10)
+                        TimeSpan.FromMilliseconds(100)
                     );
 
                     var location = await Geolocation.Default.GetLocationAsync(request, _cts.Token);
@@ -226,7 +227,7 @@ public partial class NewPage1 : ContentPage
                     System.Diagnostics.Debug.WriteLine($"GPS INNER ERROR: {ex}");
                 }
 
-                await Task.Delay(2000, _cts.Token);
+                await Task.Delay(100, _cts.Token);
             }
         }
         catch (Exception ex)
@@ -330,7 +331,7 @@ public partial class NewPage1 : ContentPage
         }
         catch (Exception ex) { /* Log error */ }
     }
-    int currentLangId = 1;
+    
 
     private async void OnGoongMapNavigating(object sender, WebNavigatingEventArgs e)
     {
@@ -359,18 +360,30 @@ public partial class NewPage1 : ContentPage
                         this.BindingContext = selectedSite;
 
                         // Cập nhật thủ công label địa chỉ nếu cần
-                        addrLabel.Text = selectedSite.Address;
-                        lblQuickInfo.Text = selectedSite.QuickInfo;
-                    });
+                        // ✅ FIX 4: safe check ảnh
+                        if (selectedSite.Images != null && selectedSite.Images.Count > 0)
+                        {
+                            MainImage.Source = selectedSite.Images[0].ImageURL;
+                        }
+                        else
+                        {
+                            MainImage.Source = "no_image.png"; // hoặc null
+                        }
 
-                    // --- PHẦN BỔ SUNG: Lấy danh sách Tour ---
+                        // bind list ảnh
+                        ImageList.ItemsSource = selectedSite.Images;
+
+                    });
+                    await SpeakText(selectedSite.QuickInfo);
+
+                    /*// --- PHẦN BỔ SUNG: Lấy danh sách Tour ---
                     var tours = await _sqlService.GetToursBySiteIdAsync(selectedSite.SiteID);
                     System.Diagnostics.Debug.WriteLine($"SỐ LƯỢNG TOUR TÌM THẤY: {tours?.Count ?? 0}");
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
                         // ToursListView là tên x:Name của CollectionView/BindableLayout trong XAML
                         ToursListView.ItemsSource = tours;
-                    });
+                    });*/
                 }
             }
             catch (Exception ex)
@@ -451,8 +464,10 @@ public partial class NewPage1 : ContentPage
             await DisplayAlert("Lỗi", ex.Message, "OK");
         }
     }
-    public void ChangeLanguage(int langId)
+    public async void ChangeLanguage(int langId)
     {
+        currentLangId = langId;
+
         string cultureCode = langId switch
         {
             1 => "vi-VN",
@@ -463,15 +478,121 @@ public partial class NewPage1 : ContentPage
 
         var culture = new CultureInfo(cultureCode);
 
-        // Cập nhật cho hệ thống
         CultureInfo.DefaultThreadCurrentUICulture = culture;
         CultureInfo.CurrentUICulture = culture;
 
-        // Quan trọng: Cập nhật cho Resource Manager để UI nhận diện
         AppResources.Culture = culture;
+
         lblVoiceOver.Text = AppResources.VoiceOver;
-        lblSelectTour.Text = AppResources.SelectTour;
-        lblCreateTour.Text = AppResources.CreateTour;
+        /*lblSelectTour.Text = AppResources.SelectTour;*/
+        /*lblCreateTour.Text = AppResources.CreateTour;*/
+
+        // 🔥 GỌI JS THAY VÌ RELOAD WEB
+        await GoongMapView.EvaluateJavaScriptAsync($"reloadPOIs({currentLangId})");
+    }
+    async Task SpeakText(string text)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(text)) return;
+
+            // 🔥 Dừng audio cũ trước
+            ttsCts?.Cancel();
+            ttsCts = new CancellationTokenSource();
+
+            isPlaying = true;
+            btnPlayPause.Source = "pause.png";
+            lblAudioStatus.Text = "Đang phát...";
+
+            string langCode = currentLangId switch
+            {
+                1 => "vi",
+                2 => "en",
+                3 => "ja",
+                _ => "vi"
+            };
+
+            var locales = await TextToSpeech.Default.GetLocalesAsync();
+
+            var voice = locales.FirstOrDefault(l =>
+                l.Language.StartsWith(langCode, StringComparison.OrdinalIgnoreCase));
+
+            await TextToSpeech.Default.SpeakAsync(
+                text,
+                new SpeechOptions
+                {
+                    Locale = voice,
+                    Pitch = 1.0f
+                },
+                ttsCts.Token // 🔥 QUAN TRỌNG
+            );
+
+            isPlaying = false;
+            btnPlayPause.Source = "play.png";
+            lblAudioStatus.Text = "Đã phát xong";
+        }
+        catch (OperationCanceledException)
+        {
+            // 🔥 bị stop → không cần báo lỗi
+            lblAudioStatus.Text = "Đã dừng";
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine("TTS ERROR: " + ex);
+        }
+    }
+    bool isPlaying = false;
+    CancellationTokenSource ttsCts;
+
+    private async void OnPlayPauseClicked(object sender, EventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(lblQuickInfo.Text))
+            return;
+
+        if (!isPlaying)
+        {
+            // 🔥 phát lại
+            await SpeakText(lblQuickInfo.Text);
+        }
+        else
+        {
+            // 🔥 dừng
+            ttsCts?.Cancel();
+            isPlaying = false;
+
+            btnPlayPause.Source = "play.png";
+            lblAudioStatus.Text = "Đã dừng";
+        }
+    }
+
+    private void OnStopClicked(object sender, EventArgs e)
+    {
+        ttsCts?.Cancel();
+        isPlaying = false;
+
+        btnPlayPause.Source = "play.png";
+        lblAudioStatus.Text = "Đã dừng";
+    }
+    void OnPoiReceived(TourismSite poi)
+    {
+        BindingContext = poi;
+
+        // 🔥 set ảnh list
+        ImageList.ItemsSource = poi.Images;
+
+        // 🔥 ảnh đầu tiên
+        if (poi.Images != null && poi.Images.Count > 0)
+        {
+            MainImage.Source = poi.Images[0].ImageURL;
+        }
+    }
+    private void OnImageTapped(object sender, EventArgs e)
+    {
+        var img = sender as Image;
+        if (img?.BindingContext is ImageDto selected)
+        {
+            MainImage.Source = selected.ImageURL;
+        }
     }
 
 

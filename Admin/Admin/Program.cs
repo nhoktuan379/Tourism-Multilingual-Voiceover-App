@@ -31,30 +31,43 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
-app.MapGet("/api/pois", async (Admin.Data.ApplicationDbContext db) => {
-    // Lấy dữ liệu từ SQL và trả về dạng JSON
-    return Results.Ok(await db.TourismSites.ToListAsync());
-}).RequireCors("AllowAll");
+app.MapGet("/api/pois", async (HttpContext http, int? langId, Admin.Data.ApplicationDbContext db) =>
+{
+    var baseUrl = $"{http.Request.Scheme}://{http.Request.Host}";
 
-app.MapGet("/api/pois/{langId}", async (int langId, Admin.Data.ApplicationDbContext db) => {
-    var data = await (from site in db.TourismSites
-                      join trans in db.SiteTranslations
-                        on site.SiteID equals trans.SiteID
-                      join lang in db.Languages
-                        on trans.LangID equals lang.LangID
-                      where trans.LangID == langId // Lọc theo LangID từ MAUI gửi lên
-                      select new
-                      {
-                          site.SiteID,
-                          site.TourismName,
-                          site.Address,
-                          site.Latitude,
-                          site.Longitude,
-                          site.Version,
-                          QuickInfo = trans.QuickInfo // Lấy mô tả theo ngôn ngữ
-                      }).ToListAsync();
+    var data = await (
+        from site in db.TourismSites
+
+        join trans in db.SiteTranslations
+            on new { site.SiteID, LangID = langId ?? 0 }
+            equals new { trans.SiteID, trans.LangID }
+            into transGroup
+
+        from trans in transGroup.DefaultIfEmpty()
+
+        select new
+        {
+            site.SiteID,
+            site.TourismName,
+            site.Address,
+            site.Latitude,
+            site.Longitude,
+
+            QuickInfo = trans != null ? trans.QuickInfo : null,
+
+            Images = db.SiteImages
+    .Where(img => img.SiteID == site.SiteID)
+    .Select(img => new
+    {
+        ImageURL = baseUrl + img.ImageURL,
+        Type = img.ImageType
+    })
+    .ToList()
+        }
+    ).ToListAsync();
 
     return Results.Ok(data);
+
 }).RequireCors("AllowAll");
 
 app.Run();
